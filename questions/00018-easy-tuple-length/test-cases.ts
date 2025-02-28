@@ -11,3 +11,7 @@ type cases = [
   // @ts-expect-error
   Length<'hello world'>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type Length<T extends readonly unknown[]> = T['length']
