@@ -27,6 +27,8 @@ Last synced: 2025-02-28
 - [00020 - Promise All](./questions/00020-medium-promise-all)
 - [00043 - Exclude](./questions/00043-easy-exclude)
 - [00062 - Lookup](./questions/00062-medium-type-lookup)
+- [00106 - TrimLeft](./questions/00106-medium-trimleft)
+- [00108 - Trim](./questions/00108-medium-trim)
 - [00189 - Awaited](./questions/00189-easy-awaited)
 - [00268 - If](./questions/00268-easy-if)
 - [00533 - Concat](./questions/00533-easy-concat)
