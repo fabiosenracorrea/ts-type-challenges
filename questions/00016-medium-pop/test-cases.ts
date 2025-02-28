@@ -5,3 +5,10 @@ type cases = [
   Expect<Equal<Pop<['a', 'b', 'c', 'd']>, ['a', 'b', 'c']>>,
   Expect<Equal<Pop<[]>, []>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type Pop<T extends unknown[]> =
+  T extends [...infer Rest, infer _Last]
+    ? Rest
+    : []
