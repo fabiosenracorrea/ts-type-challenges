@@ -9,5 +9,6 @@ Last synced: 2025-02-28
 ## Completed Challenges
 
 - [0004 - Pick](./questions/00004-easy-pick)
+- [0011 - Tuple to Object](./questions/00011-easy-tuple-to-object)
 - [0013 - Hello World](./questions/00013-warm-hello-world)
 - [0014 - First](./questions/00014-easy-first)
