@@ -10,6 +10,7 @@ Last synced: 2025-02-28
 
 ## Completed Challenges
 
+- [00002 - ReturnType](./questions/00002-medium-return-type)
 - [00004 - Pick](./questions/00004-easy-pick)
 - [00011 - Tuple to Object](./questions/00011-easy-tuple-to-object)
 - [00013 - Hello World](./questions/00013-warm-hello-world)
