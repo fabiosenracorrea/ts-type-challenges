@@ -6,6 +6,8 @@ Last synced: 2025-02-28
 
 > These challenges were done with no cheating of the solution. Some of them contain extra types that could be derived from the main type idea or multiple solutions that either consider multiple use-cases or all solve it
 
+> The difficulty level comes from the repo itself. Some of the ratings are quite questionable. Example, "Includes" and "Push" both marked as easy does not make that much sense. Anyway..
+
 ## Completed Challenges
 
 - [00004 - Pick](./questions/00004-easy-pick)
@@ -18,6 +20,7 @@ Last synced: 2025-02-28
 - [00268 - If](./questions/00268-easy-if)
 - [00533 - Concat](./questions/00533-easy-concat)
 - [00898 - Includes](./questions/00898-easy-includes)
+- [03057 - Push](./questions/03057-easy-push)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
