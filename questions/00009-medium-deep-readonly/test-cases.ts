@@ -54,3 +54,11 @@ type Expected1 = {
 }
 
 type Expected2 = { readonly a: string } | { readonly b: number }
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type DeepReadonly<T> = {
+  readonly [K in keyof T]: T[K] extends Record<string, unknown> | unknown[]
+    ? DeepReadonly<T[K]>
+    : T[K]
+}
