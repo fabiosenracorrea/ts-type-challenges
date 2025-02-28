@@ -16,6 +16,7 @@ Last synced: 2025-02-28
 - [00007 - Readonly](./questions/00007-easy-readonly)
 - [00008 - Readonly2](./questions/00008-medium-readonly-2)
 - [00009 - DeepReadonly](./questions/00009-medium-deep-readonly)
+- [00010 - Tuple to Union](./questions/00010-medium-tuple-to-union)
 - [00011 - Tuple to Object](./questions/00011-easy-tuple-to-object)
 - [00013 - Hello World](./questions/00013-warm-hello-world)
 - [00014 - First](./questions/00014-easy-first)
