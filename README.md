@@ -16,3 +16,4 @@ Last synced: 2025-02-28
 - [00043 - Exclude](./questions/00043-easy-exclude)
 - [00189 - Awaited](./questions/00189-easy-awaited)
 - [00268 - If](./questions/00268-easy-if)
+- [00533 - Concat](./questions/00533-easy-concat)

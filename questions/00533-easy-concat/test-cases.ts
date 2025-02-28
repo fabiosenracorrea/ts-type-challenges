@@ -12,3 +12,9 @@ type cases = [
 
 // @ts-expect-error
 type error = Concat<null, undefined>
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type AnyArray = unknown[] | readonly unknown[]
+
+type Concat<T extends AnyArray, U extends AnyArray> = [...T, ...U]
