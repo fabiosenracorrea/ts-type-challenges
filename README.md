@@ -13,3 +13,4 @@ Last synced: 2025-02-28
 - [0013 - Hello World](./questions/00013-warm-hello-world)
 - [0014 - First](./questions/00014-easy-first)
 - [0018 - Tuple Length](./questions/00018-easy-tuple-length)
+- [0043 - Exclude](./questions/00043-easy-exclude)
