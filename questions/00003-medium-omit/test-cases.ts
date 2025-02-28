@@ -33,3 +33,9 @@ interface Expected2 {
 interface Expected3 {
   readonly title: string
 }
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type MyOmit<T, K extends keyof T> = {
+  [Key in keyof T as Key extends K ? never : Key]: T[Key]
+}
