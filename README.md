@@ -18,6 +18,7 @@ Last synced: 2025-02-28
 - [00009 - DeepReadonly](./questions/00009-medium-deep-readonly)
 - [00010 - Tuple to Union](./questions/00010-medium-tuple-to-union)
 - [00011 - Tuple to Object](./questions/00011-easy-tuple-to-object)
+- [00012 - Chainable](./questions/00012-medium-chainable-options)
 - [00013 - Hello World](./questions/00013-warm-hello-world)
 - [00014 - First](./questions/00014-easy-first)
 - [00018 - Tuple Length](./questions/00018-easy-tuple-length)
