@@ -4,7 +4,7 @@ This repo captures the TS challenges from [type-challenges](https://github.com/t
 
 Last synced: 2025-02-28
 
-> These challenges were done with no cheating of the solution. Some of them contain extra types that could be derived from the main type idea
+> These challenges were done with no cheating of the solution. Some of them contain extra types that could be derived from the main type idea or multiple solutions that either consider multiple use-cases or all solve it
 
 ## Completed Challenges
 
@@ -15,3 +15,4 @@ Last synced: 2025-02-28
 - [00018 - Tuple Length](./questions/00018-easy-tuple-length)
 - [00043 - Exclude](./questions/00043-easy-exclude)
 - [00189 - Awaited](./questions/00189-easy-awaited)
+- [00268 - If](./questions/00268-easy-if)
