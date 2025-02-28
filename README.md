@@ -22,6 +22,7 @@ Last synced: 2025-02-28
 - [00898 - Includes](./questions/00898-easy-includes)
 - [03057 - Push](./questions/03057-easy-push)
 - [03060 - Unshift](./questions/03060-easy-unshift)
+- [03312 - Parameters](./questions/03312-easy-parameters)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
