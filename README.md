@@ -24,6 +24,7 @@ Last synced: 2025-02-28
 - [00015 - Last Array Item](./questions/00015-medium-last)
 - [00016 - Pop](./questions/00016-medium-pop)
 - [00018 - Tuple Length](./questions/00018-easy-tuple-length)
+- [00020 - Promise All](./questions/00020-medium-promise-all)
 - [00043 - Exclude](./questions/00043-easy-exclude)
 - [00189 - Awaited](./questions/00189-easy-awaited)
 - [00268 - If](./questions/00268-easy-if)
