@@ -1,1 +1,8 @@
-type ReplaceAll<S extends string, From extends string, To extends string> = any
+// Buildup from Replace
+
+type ReplaceAll<Text, From extends string, To extends string> =
+  From extends ''
+    ? Text
+    : Text extends `${infer P}${From}${infer Z}`
+      ? `${ReplaceAll<P, From, To>}${To}${ReplaceAll<Z, From, To>}`
+      : Text
