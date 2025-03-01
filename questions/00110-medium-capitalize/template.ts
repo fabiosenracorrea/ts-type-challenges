@@ -30,3 +30,8 @@ type MyCapitalize<Text extends string> =
     : Text extends `y${infer P}` ? `Y${P}`
     : Text extends `z${infer P}` ? `Z${P}`
     : Text
+
+// Using built ins...
+
+type MyCapitalize2<Text extends string> =
+      Text extends `${infer P}${infer U}` ? `${Uppercase<P>}${U}` : Text
