@@ -34,6 +34,7 @@ Last synced: 2025-02-28
 - [00119 - ReplaceAll](./questions/00119-medium-replaceall)
 - [00189 - Awaited](./questions/00189-easy-awaited)
 - [00191 - Append Argument](./questions/00191-medium-append-argument)
+- [00296 - Permutation](./questions/00296-medium-permutation)
 - [00268 - If](./questions/00268-easy-if)
 - [00533 - Concat](./questions/00533-easy-concat)
 - [00898 - Includes](./questions/00898-easy-includes)

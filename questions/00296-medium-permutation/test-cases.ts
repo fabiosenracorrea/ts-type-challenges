@@ -1,4 +1,4 @@
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect, UnionToIntersection } from '@type-challenges/utils'
 
 type cases = [
   Expect<Equal<Permutation<'A'>, ['A']>>,
@@ -7,3 +7,12 @@ type cases = [
   Expect<Equal<Permutation<boolean>, [false, true] | [true, false]>>,
   Expect<Equal<Permutation<never>, []>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type Permutation<T, Acc = T> =
+    [T] extends [never]
+      ? []
+      : Acc extends Acc
+        ? [Acc, ...Permutation<Exclude<T, Acc>>]
+        : never
