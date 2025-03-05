@@ -1,1 +1,4 @@
-type EndsWith<T extends string, U extends string> = any
+type EndsWith<S extends string, Target extends string> =
+  S extends `${infer _P}${Target}`
+    ? true
+    : false

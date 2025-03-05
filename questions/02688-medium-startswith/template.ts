@@ -1,1 +1,4 @@
-type StartsWith<T extends string, U extends string> = any
+type StartsWith<S extends string, Target extends string> =
+  S extends `${Target}${infer _P}`
+    ? true
+    : false

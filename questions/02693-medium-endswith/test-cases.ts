@@ -8,3 +8,10 @@ type cases = [
   Expect<Equal<EndsWith<'abc', ''>, true>>,
   Expect<Equal<EndsWith<'abc', ' '>, false>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type EndsWith<S extends string, Target extends string> =
+  S extends `${infer _P}${Target}`
+    ? true
+    : false
