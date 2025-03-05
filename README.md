@@ -53,6 +53,7 @@ Last synced: 2025-02-28
 - [01367 - Remove Index Signature](./questions/01367-medium-remove-index-signature)
 - [01978 - Percentage Parser](./questions/01978-medium-percentage-parser)
 - [02070 - Drop Char](./questions/02070-medium-drop-char)
+- [02257 - Minus 1](./questions/02257-medium-minusone)
 - [03057 - Push](./questions/03057-easy-push)
 - [03060 - Unshift](./questions/03060-easy-unshift)
 - [03312 - Parameters](./questions/03312-easy-parameters)
