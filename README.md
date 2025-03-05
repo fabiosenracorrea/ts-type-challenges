@@ -51,6 +51,7 @@ Last synced: 2025-02-28
 - [01097 - IsUnion](./questions/01097-medium-isunion)
 - [01130 - Replace Keys](./questions/01130-medium-replacekeys)
 - [01367 - Remove Index Signature](./questions/01367-medium-remove-index-signature)
+- [01978 - Percentage Parser](./questions/01978-medium-percentage-parser)
 - [03057 - Push](./questions/03057-easy-push)
 - [03060 - Unshift](./questions/03060-easy-unshift)
 - [03312 - Parameters](./questions/03312-easy-parameters)
