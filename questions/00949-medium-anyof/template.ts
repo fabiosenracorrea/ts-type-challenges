@@ -25,3 +25,13 @@ type AnyOf2<T extends unknown[]> =
       ? AnyOf<Rest>
       : true
     : false
+
+/**
+ * Solution 3 - Array[number]!
+ *
+ * If all the items extends Falsy, nothing inside of it matters
+ */
+type AnyOf3<T extends unknown[]> =
+  T[number] extends Falsy2
+    ? false
+    : true
