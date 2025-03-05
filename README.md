@@ -46,6 +46,7 @@ Last synced: 2025-02-28
 - [00612 - Kebab Case](./questions/00612-medium-kebabcase)
 - [00645 - Obj Diff](./questions/00645-medium-diff)
 - [00898 - Includes](./questions/00898-easy-includes)
+- [00949 - AnyOf](./questions/00949-medium-anyof)
 - [03057 - Push](./questions/03057-easy-push)
 - [03060 - Unshift](./questions/03060-easy-unshift)
 - [03312 - Parameters](./questions/03312-easy-parameters)
