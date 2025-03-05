@@ -15,3 +15,15 @@ type cases = [
   Expect<Equal<IsUnion<string | 'a'>, false>>,
   Expect<Equal<IsUnion<never>, false>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+// Similar approach to the Permutation exercise
+type IsUnion<T, Acc = T> =
+  [T] extends [never]
+    ? false
+    : Acc extends Acc
+      ? [Exclude<T, Acc>] extends [never]
+          ? false
+          : true
+      : false

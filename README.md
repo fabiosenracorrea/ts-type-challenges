@@ -48,6 +48,7 @@ Last synced: 2025-02-28
 - [00898 - Includes](./questions/00898-easy-includes)
 - [00949 - AnyOf](./questions/00949-medium-anyof)
 - [01042 - IsNever](./questions/01042-medium-isnever)
+- [01097 - IsUnion](./questions/01097-medium-isunion)
 - [03057 - Push](./questions/03057-easy-push)
 - [03060 - Unshift](./questions/03060-easy-unshift)
 - [03312 - Parameters](./questions/03312-easy-parameters)
