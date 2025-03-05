@@ -39,3 +39,8 @@ type Mutable<T extends Record<string, unknown> | readonly any[]> =
     : T extends readonly any[]
       ? GetItems<T>
       : never
+
+// Removing Explicitly...
+type Mutable1<T extends Record<string, unknown> | readonly any[]> = {
+  -readonly [K in keyof T]: T[K]
+}
