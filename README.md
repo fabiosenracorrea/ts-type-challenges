@@ -40,6 +40,7 @@ Last synced: 2025-02-28
 - [00459 - Flatten](./questions/00459-medium-flatten)
 - [00527 - Append to Obj](./questions/00527-medium-append-to-object)
 - [00529 - Absolute](./questions/00529-medium-absolute)
+- [00531 - String to Union](./questions/00531-medium-string-to-union)
 - [00533 - Concat](./questions/00533-easy-concat)
 - [00898 - Includes](./questions/00898-easy-includes)
 - [03057 - Push](./questions/03057-easy-push)
