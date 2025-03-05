@@ -12,3 +12,14 @@ type cases = [
   Expect<Equal<Absolute<-1_000_000n>, '1000000'>>,
   Expect<Equal<Absolute<9_999n>, '9999'>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type Absolute<T extends number | string | bigint> =
+  T extends number | bigint
+    ? Absolute<`${T}`>
+    : T extends `-${infer N}`
+      ? N
+      : T extends `${infer B}n`
+        ? B
+        : T
