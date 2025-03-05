@@ -16,3 +16,13 @@ type cases = [
     c: boolean
   }>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type Prettify<T> = {
+  [K in keyof T]: T[K]
+}
+
+type Merge<T, U> = Prettify<
+  Omit<T, keyof U> & U
+>
