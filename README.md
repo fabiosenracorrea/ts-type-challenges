@@ -44,6 +44,7 @@ Last synced: 2025-02-28
 - [00533 - Concat](./questions/00533-easy-concat)
 - [00599 - Obj Merge](./questions/00599-medium-merge)
 - [00612 - Kebab Case](./questions/00612-medium-kebabcase)
+- [00645 - Obj Diff](./questions/00645-medium-diff)
 - [00898 - Includes](./questions/00898-easy-includes)
 - [03057 - Push](./questions/03057-easy-push)
 - [03060 - Unshift](./questions/03060-easy-unshift)
