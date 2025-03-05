@@ -22,6 +22,13 @@
  * Then there will be N! tuples built per iteration (because we recurse with N-1).
  * The way TypeScript works is that unions are flat, so all the unions of the inner
  * recursions will be lifted to the final level.
+ *
+ * ============= My comments =============
+ *
+ * If we do type Str<T> = T extends string ? `_${T}` : T;
+ * to 'A' | 'B' the result is like doing Str<'A'> | Str<'B'>
+ * But if we "save" the type in a accumulator/other variable,
+ * its saved as the whole 'A' | 'B' type, meaning
  */
 type Permutation<T, Acc = T> =
     [T] extends [never]
