@@ -67,3 +67,42 @@ type MinusOne<T extends number> = ParseInt<
     ExecCalc<T>
   >
 >
+
+// ------------------- ACCOUNTING NEGATIVES ------------------------ //
+
+type SumTargets = [
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  '0',
+]
+
+type WalkUp<T extends string> =
+  T extends `${infer Target extends Digit}${infer Rest}`
+    ? Target extends '9'
+      ? `${SumTargets[Target]}${Rest extends '' ? '1' : WalkUp<Rest>}`
+      : `${SumTargets[Target]}${Rest}`
+    : T extends Digit
+      ? SumTargets[T]
+      : T
+
+type NegativeCalc<T extends number> = ReverseString<
+  WalkUp<
+    ReverseString<`${T}`>
+  >
+>
+
+type FullMinusOne<T extends number> =
+  T extends 0
+    ? -1
+    : `${T}` extends `-${infer N extends number}`
+      ? ParseInt<
+          `-${RemovePadZero<NegativeCalc<N>>}`
+      >
+      : MinusOne<T>
