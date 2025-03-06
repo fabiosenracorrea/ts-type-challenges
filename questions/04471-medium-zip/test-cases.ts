@@ -7,3 +7,12 @@ type cases = [
   Expect<Equal<Zip<[], [1, 2, 3]>, []>>,
   Expect<Equal<Zip<[[1, 2]], [3]>, [[[1, 2], 3]]>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type Zip<Arr1 extends unknown[], Arr2 extends unknown[]> =
+  Arr1 extends [infer First1, ...infer Rest1]
+    ? Arr2 extends [infer First2, ...infer Rest2]
+      ? [[First1, First2], ...Zip<Rest1, Rest2>]
+      : []
+    : []

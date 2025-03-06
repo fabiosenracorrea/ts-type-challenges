@@ -4,7 +4,7 @@ This repo captures the TS challenges from [type-challenges](https://github.com/t
 
 Last synced: 2025-02-28
 
-> These challenges were done with no cheating of the solution. Some of them contain extra types that could be derived from the main type idea or multiple solutions that either consider multiple use-cases or all solve it
+> These challenges were done with no cheating of the solution, with the exception of those that explicitly reference a source on it. Some of them contain extra types that could be derived from the main type idea or multiple solutions that either consider multiple use-cases or all solve it
 
 > The difficulty level comes from the repo itself. Some of the ratings are quite questionable. Example, "Includes" and "Push" both marked as easy does not make that much sense. Anyway..
 
@@ -75,6 +75,7 @@ Last synced: 2025-02-28
 - [04179 - Flip Key-Values](./questions/04179-medium-flip)
 - [04260 - All combinations](./questions/04260-medium-nomiwase)
 - [04425 - Greater Than](./questions/04425-medium-greater-than)
+- [04471 - Zip](./questions/04471-medium-zip)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
