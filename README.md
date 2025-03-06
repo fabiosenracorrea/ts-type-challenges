@@ -68,6 +68,7 @@ Last synced: 2025-02-28
 - [03188 - Tuple to Nested Object](./questions/03188-medium-tuple-to-nested-object)
 - [03192 - Reverse](./questions/03192-medium-reverse)
 - [03196 - Flip Arguments](./questions/03196-medium-flip-arguments)
+- [03243 - Flat Depth](./questions/03243-medium-flattendepth)
 - [03312 - Parameters](./questions/03312-easy-parameters)
 - [xxxx - Next](./questions/xxxxxxx)
 
