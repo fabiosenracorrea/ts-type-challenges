@@ -80,6 +80,7 @@ Last synced: 2025-02-28
 - [04499 - Chunk](./questions/04499-medium-chunk)
 - [04518 - Fill](./questions/04518-medium-fill)
 - [04803 - TrimRight](./questions/04803-medium-trim-right)
+- [05117 - Without](./questions/05117-medium-without)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
