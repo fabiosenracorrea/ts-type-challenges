@@ -86,6 +86,7 @@ Last synced: 2025-02-28
 - [05153 - IndexOf](./questions/05153-medium-indexof)
 - [05317 - LastIndexOf](./questions/05317-medium-lastindexof)
 - [05360 - Unique](./questions/05360-medium-unique)
+- [05821 - MapTypesSwap](./questions/05821-medium-maptypes)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate

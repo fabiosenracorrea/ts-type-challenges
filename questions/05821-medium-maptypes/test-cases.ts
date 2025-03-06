@@ -10,3 +10,16 @@ type cases = [
   Expect<Equal<MapTypes<{ name: string }, { mapFrom: boolean, mapTo: never }>, { name: string }>>,
   Expect<Equal<MapTypes<{ name: string, date: Date }, { mapFrom: string, mapTo: boolean } | { mapFrom: Date, mapTo: string }>, { name: boolean, date: string }>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type MapObj = { mapFrom: any, mapTo: any }
+
+type Swap<Value, FromTo extends MapObj, TargetConfig extends MapObj = Extract<FromTo, { mapFrom: Value }>> =
+  [TargetConfig] extends [never]
+    ? Value
+    : TargetConfig['mapTo']
+
+type MapTypes<Obj, FromTo extends MapObj> = {
+  [Key in keyof Obj]: Swap<Obj[Key], FromTo>
+}
