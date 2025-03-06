@@ -84,6 +84,7 @@ Last synced: 2025-02-28
 - [05140 - Truncate](./questions/05140-medium-trunc)
 - [05310 - Join](./questions/05310-medium-join)
 - [05153 - IndexOf](./questions/05153-medium-indexof)
+- [05317 - LastIndexOf](./questions/05317-medium-lastindexof)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
