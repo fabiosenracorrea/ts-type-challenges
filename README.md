@@ -85,6 +85,7 @@ Last synced: 2025-02-28
 - [05310 - Join](./questions/05310-medium-join)
 - [05153 - IndexOf](./questions/05153-medium-indexof)
 - [05317 - LastIndexOf](./questions/05317-medium-lastindexof)
+- [05360 - Unique](./questions/05360-medium-unique)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
