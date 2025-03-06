@@ -66,6 +66,7 @@ Last synced: 2025-02-28
 - [03060 - Unshift](./questions/03060-easy-unshift)
 - [03062 - Shift](./questions/03062-medium-shift)
 - [03188 - Tuple to Nested Object](./questions/03188-medium-tuple-to-nested-object)
+- [03192 - Reverse](./questions/03192-medium-reverse)
 - [03312 - Parameters](./questions/03312-easy-parameters)
 - [xxxx - Next](./questions/xxxxxxx)
 
