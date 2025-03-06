@@ -73,6 +73,7 @@ Last synced: 2025-02-28
 - [03326 - BEM Style](./questions/03326-medium-bem-style-string)
 - [03376 - InorderTraversal](./questions/03376-medium-inordertraversal)
 - [04179 - Flip Key-Values](./questions/04179-medium-flip)
+- [04260 - All combinations](./questions/04260-medium-nomiwase)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
