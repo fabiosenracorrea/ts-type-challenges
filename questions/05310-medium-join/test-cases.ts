@@ -8,3 +8,14 @@ type cases = [
   Expect<Equal<Join<[], 'u'>, ''>>,
   Expect<Equal<Join<['1', '1', '1']>, '1,1,1'>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type Item = string | number
+
+type Join<List extends Item[], Delimiter extends Item = ','> =
+  List extends [infer First extends Item, ...infer Rest extends Item[]]
+    ? Rest['length'] extends 0
+      ? First
+      : `${First}${Delimiter}${Join<Rest, Delimiter>}`
+    : ''
