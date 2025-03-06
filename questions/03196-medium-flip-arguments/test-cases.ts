@@ -16,3 +16,14 @@ type errors = [
   // @ts-expect-error
   FlipArguments<null | undefined>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type AnyFn = (...p: any[]) => any
+
+type Reverse<T extends unknown[]> =
+  T extends [...infer Rest, infer Last]
+    ? [Last, ...Reverse<Rest>]
+    : T
+
+type FlipArguments<Fn extends AnyFn> = (...p: Reverse<Parameters<Fn>>) => ReturnType<Fn>
