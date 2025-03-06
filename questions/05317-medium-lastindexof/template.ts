@@ -11,3 +11,15 @@ type LastIndexOf<
     ? LastIndexOf<Rest, Target, [...Acc, 1], Acc['length']>
     : LastIndexOf<Rest, Target, [...Acc, 1], LastIndex>
   : LastIndex
+
+/**
+ * Solution 2 - No extra variables
+ */
+type LastIndexOf2<
+  List extends unknown[],
+  Target,
+> = List extends [...infer Rest, infer Last]
+  ? Equal<Target, Last> extends true
+    ? Rest['length']
+    : LastIndexOf2<Rest, Target>
+  : -1
