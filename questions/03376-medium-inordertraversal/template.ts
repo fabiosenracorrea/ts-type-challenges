@@ -1,6 +1,10 @@
-interface TreeNode {
+interface Node {
   val: number
-  left: TreeNode | null
-  right: TreeNode | null
+  left: Node | null
+  right: Node | null
 }
-type InorderTraversal<T extends TreeNode | null> = any
+
+type InorderTraversal<T extends Node | null> =
+  T extends Node
+    ? [...InorderTraversal<T['left']>, T['val'], ...InorderTraversal<T['right']>]
+    : []

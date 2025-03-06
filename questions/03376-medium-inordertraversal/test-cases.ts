@@ -47,3 +47,16 @@ type cases = [
   Expect<Equal<InorderTraversal<typeof tree3>, [2, 1]>>,
   Expect<Equal<InorderTraversal<typeof tree4>, [1, 2]>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+interface Node {
+  val: number
+  left: Node | null
+  right: Node | null
+}
+
+type InorderTraversal<T extends Node | null> =
+  T extends Node
+    ? [...InorderTraversal<T['left']>, T['val'], ...InorderTraversal<T['right']>]
+    : []
