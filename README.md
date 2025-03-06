@@ -74,6 +74,7 @@ Last synced: 2025-02-28
 - [03376 - InorderTraversal](./questions/03376-medium-inordertraversal)
 - [04179 - Flip Key-Values](./questions/04179-medium-flip)
 - [04260 - All combinations](./questions/04260-medium-nomiwase)
+- [04425 - Greater Than](./questions/04425-medium-greater-than)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate

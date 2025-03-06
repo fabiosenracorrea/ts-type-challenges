@@ -11,3 +11,50 @@ type cases = [
   Expect<Equal<GreaterThan<111, 11>, true>>,
   Expect<Equal<GreaterThan<1234567891011, 1234567891010>, true>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type BiggerMap = {
+  0: []
+  1: ['0']
+  2: ['0', '1']
+  3: ['0', '1', '2']
+  4: ['0', '1', '2', '3']
+  5: ['0', '1', '2', '3', '4']
+  6: ['0', '1', '2', '3', '4', '5']
+  7: ['0', '1', '2', '3', '4', '5', '6']
+  8: ['0', '1', '2', '3', '4', '5', '6', '7']
+  9: ['0', '1', '2', '3', '4', '5', '6', '7', '8']
+}
+
+type IsBigger<A extends string | number, B extends string | number> =
+  A extends keyof BiggerMap
+    ? `${B}` extends BiggerMap[A][number] ? true : false
+    : false
+
+type NumToTuple<T extends number | string> =
+  `${T}` extends `${infer P extends number}${infer Rest}`
+    ? [P, ...NumToTuple<Rest>]
+    : []
+
+type Shift<T extends unknown[]> =
+    T extends [unknown, ...infer R]
+      ? R
+      : T
+
+type IsGreater<A extends number[], B extends number[]>
+  = A['length'] extends B['length']
+    ? A['length'] extends 0
+      ? false
+      : IsBigger<A[0], B[0]> extends true
+        ? true
+        : A[0] extends B[0]
+          ? IsGreater<Shift<A>, Shift<B>>
+          : false
+    : IsBigger<A['length'], B['length']>
+
+type GreaterThan<A extends number, B extends number> =
+  IsGreater<
+    NumToTuple<A>,
+    NumToTuple<B>
+  >
