@@ -86,3 +86,57 @@ Last synced: 2025-02-28
 3. Access the challenge to verify no errors are present
 
 Later will add a "run all completed" script to facilitate that work, but the ideia here is to individually look at the approaches, instead of blindly seeing that it simply pass all
+
+
+### Worthy Concepts along the way
+
+#### Quickbits
+
+- `X extends Y` can be read as "is X a subset of Y"
+
+- `IsAny` check visualized
+  ```ts
+  type IsAny<T> = 1 extends T & 0 ? true : false
+
+  type A = any & 0 // any
+  type B = never & 0 // never
+  type C = unknown & 0 // 0
+  ```
+
+- `unknown` is "ignored" on intersections that contain value `unknown & some_type` = `some_type`
+- `never` is "ignored" on unions that contain value `never | string` = `string`
+
+#### Key casting
+
+We are familiar with the object mapping we can use:
+
+```ts
+type SomeKeys = 'name' | 'age'
+
+type Person = {
+  [K in SomeKeys]: string
+}
+
+// Creates:
+
+type Person = {
+  name: string;
+  age: string;
+}
+```
+
+We can use `as` to remap inside the bracket declaration if we need to act on a condition:
+
+```ts
+type SomeKeys = 'name' | 'age'
+
+type Person = {
+  [K in SomeKeys as K extends 'name' ? never : K]: string
+}
+
+// Creates:
+
+type Person = {
+  age: string;
+}
+```
