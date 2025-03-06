@@ -6,3 +6,10 @@ type cases = [
   Expect<Equal<TupleToNestedObject<['a', 'b', 'c'], boolean>, { a: { b: { c: boolean } } }>>,
   Expect<Equal<TupleToNestedObject<[], boolean>, boolean>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type TupleToNestedObject<T extends PropertyKey[], Value> =
+  T extends [...infer P extends PropertyKey[], infer Last extends PropertyKey]
+    ? TupleToNestedObject<P, { [K in Last]: Value }>
+    : Value
