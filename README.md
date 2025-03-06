@@ -64,6 +64,7 @@ Last synced: 2025-02-28
 - [02946 - Object Entries](./questions/02946-medium-objectentries)
 - [03057 - Push](./questions/03057-easy-push)
 - [03060 - Unshift](./questions/03060-easy-unshift)
+- [03062 - Shift](./questions/03062-medium-shift)
 - [03312 - Parameters](./questions/03312-easy-parameters)
 - [xxxx - Next](./questions/xxxxxxx)
 
