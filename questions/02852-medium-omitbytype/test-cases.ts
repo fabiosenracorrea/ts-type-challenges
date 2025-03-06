@@ -12,3 +12,9 @@ type cases = [
   Expect<Equal<OmitByType<Model, string>, { count: number, isReadonly: boolean, isEnable: boolean }>>,
   Expect<Equal<OmitByType<Model, number>, { name: string, isReadonly: boolean, isEnable: boolean }>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type OmitByType<Obj, T> = {
+  [Key in keyof Obj as Obj[Key] extends T ? never : Key]: Obj[Key]
+}

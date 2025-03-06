@@ -60,6 +60,7 @@ Last synced: 2025-02-28
 - [02757 - Partial By Keys](./questions/02757-medium-partialbykeys)
 - [02759 - Required By Keys](./questions/02759-medium-requiredbykeys)
 - [02793 - Mutable Obj](./questions/02793-medium-mutable)
+- [02852 - Omit By Type](./questions/02852-medium-omitbytype)
 - [03057 - Push](./questions/03057-easy-push)
 - [03060 - Unshift](./questions/03060-easy-unshift)
 - [03312 - Parameters](./questions/03312-easy-parameters)
