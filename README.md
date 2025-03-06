@@ -76,6 +76,7 @@ Last synced: 2025-02-28
 - [04260 - All combinations](./questions/04260-medium-nomiwase)
 - [04425 - Greater Than](./questions/04425-medium-greater-than)
 - [04471 - Zip](./questions/04471-medium-zip)
+- [04484 - IsTuple](./questions/04484-medium-istuple)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
