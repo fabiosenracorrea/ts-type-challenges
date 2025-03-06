@@ -70,6 +70,7 @@ Last synced: 2025-02-28
 - [03196 - Flip Arguments](./questions/03196-medium-flip-arguments)
 - [03243 - Flat Depth](./questions/03243-medium-flattendepth)
 - [03312 - Parameters](./questions/03312-easy-parameters)
+- [03326 - BEM Style](./questions/03326-medium-bem-style-string)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
