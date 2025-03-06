@@ -81,6 +81,7 @@ Last synced: 2025-02-28
 - [04518 - Fill](./questions/04518-medium-fill)
 - [04803 - TrimRight](./questions/04803-medium-trim-right)
 - [05117 - Without](./questions/05117-medium-without)
+- [05140 - Truncate](./questions/05140-medium-trunc)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
