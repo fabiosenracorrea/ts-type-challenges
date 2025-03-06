@@ -49,7 +49,7 @@ type IsGreater<A extends number[], B extends number[]>
           : false
     : IsBigger<A['length'], B['length']>
 
-type GreaterThan<A extends number, B extends number> =
+export type GreaterThan<A extends number, B extends number> =
   IsGreater<
     NumToTuple<A>,
     NumToTuple<B>

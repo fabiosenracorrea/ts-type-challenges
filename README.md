@@ -78,6 +78,7 @@ Last synced: 2025-02-28
 - [04471 - Zip](./questions/04471-medium-zip)
 - [04484 - IsTuple](./questions/04484-medium-istuple)
 - [04499 - Chunk](./questions/04499-medium-chunk)
+- [04518 - Fill](./questions/04518-medium-fill)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
