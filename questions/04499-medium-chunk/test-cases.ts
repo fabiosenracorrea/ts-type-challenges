@@ -23,3 +23,17 @@ type Chunk<
   : Current extends [unknown, ...unknown[]]
     ? [...Acc, Current]
     : Acc
+
+// --------------- Using 1 control variable ----------------- //
+
+type Chunk2<
+  List extends unknown[],
+  MaxSize extends number,
+  Acc extends readonly unknown[] = [],
+> = List extends [infer First, ...infer Rest]
+  ? Acc['length'] extends MaxSize
+    ? [Acc, ...Chunk2<Rest, MaxSize, [First]>]
+    : Chunk2<Rest, MaxSize, [...Acc, First]>
+  : Acc['length'] extends 0
+    ? []
+    : [Acc]
