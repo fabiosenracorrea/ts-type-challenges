@@ -6,3 +6,9 @@ type cases = [
   Expect<Equal<{ 3.14: 'pi', true: 'bool' }, Flip<{ pi: 3.14, bool: true }>>>,
   Expect<Equal<{ val2: 'prop2', val: 'prop' }, Flip<{ prop: 'val', prop2: 'val2' }>>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type Flip<T> = {
+  [Key in keyof T as T[Key] extends string | number | boolean ? `${T[Key]}` : never]: Key
+}
