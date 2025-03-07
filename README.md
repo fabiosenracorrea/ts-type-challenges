@@ -90,6 +90,7 @@ Last synced: 2025-02-28
 - [07544 - ConstructTuple](./questions/07544-medium-construct-tuple)
 - [08640 - Number Range](./questions/08640-medium-number-range)
 - [08767 - Combination](./questions/08767-medium-combination)
+- [08987 - Subsequence](./questions/08987-medium-subsequence)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
