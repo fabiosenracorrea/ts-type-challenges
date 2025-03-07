@@ -93,6 +93,7 @@ Last synced: 2025-02-28
 - [08987 - Subsequence](./questions/08987-medium-subsequence)
 - [09896 - Get Middle Element](./questions/09896-medium-get-middle-element)
 - [10969 - Integer](./questions/10969-medium-integer)
+- [16259 - To Primitive](./questions/16259-medium-to-primitive)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate

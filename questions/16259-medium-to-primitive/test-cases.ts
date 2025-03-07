@@ -1,3 +1,4 @@
+/* eslint-disable ts/no-unsafe-function-type */
 import type { Equal, Expect } from '@type-challenges/utils'
 
 type PersonInfo = {
@@ -29,3 +30,18 @@ type ExpectedResult = {
 type cases = [
   Expect<Equal<ToPrimitive<PersonInfo>, ExpectedResult>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type ToPrimitive<T> = {
+  [K in keyof T]:
+  T[K] extends string
+    ? string
+    : T[K] extends number
+      ? number
+      : T[K] extends (...p: any[]) => any
+        ? Function
+        : T[K] extends boolean
+          ? boolean
+          : ToPrimitive<T[K]>
+}
