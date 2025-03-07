@@ -88,6 +88,7 @@ Last synced: 2025-02-28
 - [05360 - Unique](./questions/05360-medium-unique)
 - [05821 - MapTypesSwap](./questions/05821-medium-maptypes)
 - [07544 - ConstructTuple](./questions/07544-medium-construct-tuple)
+- [08640 - Number Range](./questions/08640-medium-number-range)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate

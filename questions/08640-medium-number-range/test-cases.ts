@@ -22,3 +22,12 @@ type cases = [
   Expect<Equal<NumberRange<0, 2>, Result2>>,
   Expect<Equal<NumberRange<0, 140>, Result3>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type NumTuple<Size extends number, Acc extends readonly any[] = []> =
+  Acc['length'] extends Size
+    ? Acc[number]
+    : NumTuple<Size, [...Acc, Acc['length']]>
+
+type NumberRange<Start extends number, End extends number> = Exclude<NumTuple<End>, NumTuple<Start>> | Start | End
