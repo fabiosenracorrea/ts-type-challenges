@@ -7,3 +7,10 @@ type cases = [
   // @ts-expect-error
   Expect<Equal<ConstructTuple<1000>['length'], 1000>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type ConstructTuple<Size extends number, Acc extends readonly unknown[] = []> =
+  Acc['length'] extends Size
+    ? Acc
+    : ConstructTuple<Size, [...Acc, unknown]>
