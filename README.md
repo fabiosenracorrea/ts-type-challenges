@@ -23,6 +23,7 @@ Last synced: 2025-02-28
 - [00014 - First](./questions/00014-easy-first)
 - [00015 - Last Array Item](./questions/00015-medium-last)
 - [00016 - Pop](./questions/00016-medium-pop)
+- [00017 - Currying 1](./questions/00017-hard-currying-1)
 - [00018 - Tuple Length](./questions/00018-easy-tuple-length)
 - [00020 - Promise All](./questions/00020-medium-promise-all)
 - [00043 - Exclude](./questions/00043-easy-exclude)
