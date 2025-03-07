@@ -14,3 +14,12 @@ type cases1 = [
   Expect<Equal<Integer<typeof x>, never>>,
   Expect<Equal<Integer<typeof y>, 1>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type Integer<N extends number> =
+  `${N}` extends `${number}.${number}`
+    ? never
+    : number extends N // handles Integer<number>
+      ? never
+      : N

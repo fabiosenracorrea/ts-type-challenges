@@ -92,6 +92,7 @@ Last synced: 2025-02-28
 - [08767 - Combination](./questions/08767-medium-combination)
 - [08987 - Subsequence](./questions/08987-medium-subsequence)
 - [09896 - Get Middle Element](./questions/09896-medium-get-middle-element)
+- [10969 - Integer](./questions/10969-medium-integer)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
