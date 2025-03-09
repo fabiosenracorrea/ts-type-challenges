@@ -13,6 +13,7 @@ Last synced: 2025-02-28
 - [00002 - ReturnType](./questions/00002-medium-return-type)
 - [00003 - Omit](./questions/00003-medium-omit)
 - [00004 - Pick](./questions/00004-easy-pick)
+- [00006 - Simple Vue](./questions/00006-hard-simple-vue)
 - [00007 - Readonly](./questions/00007-easy-readonly)
 - [00008 - Readonly2](./questions/00008-medium-readonly-2)
 - [00009 - DeepReadonly](./questions/00009-medium-deep-readonly)
