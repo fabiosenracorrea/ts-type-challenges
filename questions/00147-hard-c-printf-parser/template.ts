@@ -22,14 +22,12 @@ type ShouldAppendSecond<First extends string, Second extends string> =
        ? true
        : false
 
-type ParsePrintFormat<T extends string, Commands extends readonly string[] = []> =
+type ParsePrintFormat<T extends string> =
   T extends `${infer First}${infer Second}${infer Rest}`
     ? [
-        ...Commands,
         ...GetCommand<First, Second>,
         ...ParsePrintFormat<
-          ShouldAppendSecond<First, Second> extends true ? `${Second}${Rest}` : Rest,
-          Commands
+          ShouldAppendSecond<First, Second> extends true ? `${Second}${Rest}` : Rest
         >,
       ]
-    : Commands
+    : []
