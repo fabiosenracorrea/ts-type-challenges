@@ -44,6 +44,7 @@ Last synced: 2025-02-28
 - [00147 - C-printf Parser](./questions/00147-hard-c-printf-parser)
 - [00189 - Awaited](./questions/00189-easy-awaited)
 - [00191 - Append Argument](./questions/00191-medium-append-argument)
+- [00213 - Vue Basic Props](./questions/00213-hard-vue-basic-props)
 - [00223 - IsAny](./questions/00223-hard-isany)
 - [00296 - Permutation](./questions/00296-medium-permutation)
 - [00298 - String Length](./questions/00298-medium-length-of-string)
