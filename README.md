@@ -123,6 +123,7 @@ Last synced: 2025-02-28
 - [01290 - Pinia](./questions/01290-hard-pinia)
 - [01383 - Camelize](./questions/01383-hard-camelize)
 - [02059 - Drop String](./questions/02059-hard-drop-string)
+- [02822 - Split](./questions/02822-hard-split)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate

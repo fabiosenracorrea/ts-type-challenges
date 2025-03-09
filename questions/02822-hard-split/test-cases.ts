@@ -12,3 +12,19 @@ type cases = [
   Expect<Equal<Split<''>, ['']>>,
   Expect<Equal<Split<string, 'whatever'>, string[]>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+/**
+ * Don't know if i'm a fan of the edge cases
+ */
+type Split<T extends string, Ref extends string | undefined = undefined> =
+  T extends ''
+    ? Ref extends ''
+      ? []
+      : ['']
+    : T extends `${infer Piece}${Ref}${infer Rest}`
+      ? [Piece, ... Split<Rest, Ref>]
+      : string extends T
+        ? string[]
+        : [T]
