@@ -68,6 +68,7 @@ Last synced: 2025-02-28
 - [00847 - String Join](./questions/00847-hard-string-join)
 - [00898 - Includes](./questions/00898-easy-includes)
 - [00949 - AnyOf](./questions/00949-medium-anyof)
+- [00956 - Deep Pick](./questions/00956-hard-deeppick)
 - [01042 - IsNever](./questions/01042-medium-isnever)
 - [01097 - IsUnion](./questions/01097-medium-isunion)
 - [01130 - Replace Keys](./questions/01130-medium-replacekeys)
