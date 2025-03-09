@@ -1,3 +1,4 @@
+/* eslint-disable ts/no-unused-expressions */
 import type { Equal, Expect } from '@type-challenges/utils'
 
 const store = defineStore({
@@ -64,3 +65,25 @@ type _tests = [
   Expect<Equal<typeof store.parsedNum, number>>,
   Expect<Equal<typeof r, true>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type ToReturnType<T> = {
+  [K in keyof T]: T[K] extends (...p: any[]) => any ? ReturnType<T[K]> : never
+}
+
+declare function defineStore<
+  State extends object,
+
+  Getters extends object,
+
+  Actions extends object,
+>(store: {
+  id: string
+
+  state: () => State
+
+  getters: Getters & ThisType<Readonly<State> & ToReturnType<Getters>>
+
+  actions: Actions & ThisType<State & Actions>
+}): Actions & Readonly<State> & ToReturnType<Getters>

@@ -120,6 +120,7 @@ Last synced: 2025-02-28
 - [00730 - Union to Tuple](./questions/00730-hard-union-to-tuple)
 - [00847 - String Join](./questions/00847-hard-string-join)
 - [00956 - Deep Pick](./questions/00956-hard-deeppick)
+- [01290 - Pinia](./questions/01290-hard-pinia)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
