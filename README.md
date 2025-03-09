@@ -58,6 +58,7 @@ Last synced: 2025-02-28
 - [00529 - Absolute](./questions/00529-medium-absolute)
 - [00531 - String to Union](./questions/00531-medium-string-to-union)
 - [00533 - Concat](./questions/00533-easy-concat)
+- [00545 - PrintF](./questions/00545-hard-printf)
 - [00599 - Obj Merge](./questions/00599-medium-merge)
 - [00612 - Kebab Case](./questions/00612-medium-kebabcase)
 - [00645 - Obj Diff](./questions/00645-medium-diff)
