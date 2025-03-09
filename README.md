@@ -46,6 +46,7 @@ Last synced: 2025-02-28
 - [00191 - Append Argument](./questions/00191-medium-append-argument)
 - [00213 - Vue Basic Props](./questions/00213-hard-vue-basic-props)
 - [00223 - IsAny](./questions/00223-hard-isany)
+- [00270 - Typed Get](./questions/00270-hard-typed-get)
 - [00296 - Permutation](./questions/00296-medium-permutation)
 - [00298 - String Length](./questions/00298-medium-length-of-string)
 - [00268 - If](./questions/00268-easy-if)
