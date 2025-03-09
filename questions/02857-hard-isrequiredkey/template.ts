@@ -19,3 +19,9 @@ type _RequiredKeys<T extends Record<string, unknown>> = keyof _GetRequired<T>
 type InnerCheck<T extends Record<string, unknown>, Keys extends keyof T> = Keys extends _RequiredKeys<T> ? true : false
 
 type IsRequiredKey<T extends Record<string, unknown>, Keys extends keyof T> = InnerCheck<T, Keys> extends true ? true : false
+
+// More direct
+type IsRequiredKey2<T, K extends keyof T> =
+  T[K] extends Required<T>[K]
+    ? true
+    : false
