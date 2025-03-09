@@ -40,6 +40,7 @@ Last synced: 2025-02-28
 - [00114 - Cammelcase](./questions/00114-hard-camelcase)
 - [00116 - Replace](./questions/00116-medium-replace)
 - [00119 - ReplaceAll](./questions/00119-medium-replaceall)
+- [00147 - C-printf Parser](./questions/00147-hard-c-printf-parser)
 - [00189 - Awaited](./questions/00189-easy-awaited)
 - [00191 - Append Argument](./questions/00191-medium-append-argument)
 - [00296 - Permutation](./questions/00296-medium-permutation)

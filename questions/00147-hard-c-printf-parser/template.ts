@@ -8,4 +8,28 @@ type ControlsMap = {
   p: 'pointer'
 }
 
-type ParsePrintFormat = any
+type GetCommand<First extends string, Second extends string> =
+   First extends '%'
+     ? Second extends keyof ControlsMap
+       ? [ControlsMap[Second]]
+       : []
+     : []
+
+type ShouldAppendSecond<First extends string, Second extends string> =
+   First extends '%'
+     ? false
+     : Second extends '%'
+       ? true
+       : false
+
+type ParsePrintFormat<T extends string, Commands extends readonly string[] = []> =
+  T extends `${infer First}${infer Second}${infer Rest}`
+    ? [
+        ...Commands,
+        ...GetCommand<First, Second>,
+        ...ParsePrintFormat<
+          ShouldAppendSecond<First, Second> extends true ? `${Second}${Rest}` : Rest,
+          Commands
+        >,
+      ]
+    : Commands
