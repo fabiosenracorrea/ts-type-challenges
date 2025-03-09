@@ -53,6 +53,7 @@ Last synced: 2025-02-28
 - [00300 - String to Number](./questions/00300-hard-string-to-number)
 - [00399 - Tuple Filter](./questions/00399-hard-tuple-filter)
 - [00459 - Flatten](./questions/00459-medium-flatten)
+- [00472 - Tuple to Enum Obj](./questions/00472-hard-tuple-to-enum-object)
 - [00527 - Append to Obj](./questions/00527-medium-append-to-object)
 - [00529 - Absolute](./questions/00529-medium-absolute)
 - [00531 - String to Union](./questions/00531-medium-string-to-union)
