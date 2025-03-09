@@ -36,6 +36,7 @@ Last synced: 2025-02-28
 - [00106 - TrimLeft](./questions/00106-medium-trimleft)
 - [00108 - Trim](./questions/00108-medium-trim)
 - [00110 - Capitalize](./questions/00110-medium-capitalize)
+- [00112 - Capitalize Words](./questions/00112-hard-capitalizewords)
 - [00116 - Replace](./questions/00116-medium-replace)
 - [00119 - ReplaceAll](./questions/00119-medium-replaceall)
 - [00189 - Awaited](./questions/00189-easy-awaited)
