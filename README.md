@@ -122,6 +122,7 @@ Last synced: 2025-02-28
 - [00956 - Deep Pick](./questions/00956-hard-deeppick)
 - [01290 - Pinia](./questions/01290-hard-pinia)
 - [01383 - Camelize](./questions/01383-hard-camelize)
+- [02059 - Drop String](./questions/02059-hard-drop-string)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
