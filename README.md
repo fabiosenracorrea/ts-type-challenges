@@ -129,6 +129,7 @@ Last synced: 2025-02-28
 - [02949 - Object from Entries](./questions/02949-hard-objectfromentries)
 - [04037 - Is Palindrome](./questions/04037-hard-ispalindrome)
 - [05181 - Mutable Keys](./questions/05181-hard-mutable-keys)
+- [05423 - Intersection](./questions/05423-hard-intersection)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
