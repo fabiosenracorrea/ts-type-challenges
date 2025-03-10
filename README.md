@@ -135,6 +135,7 @@ Last synced: 2025-02-28
 - [08804 - Two Sum](./questions/08804-hard-two-sum)
 - [09155 - Valid Date](./questions/09155-hard-validdate)
 - [09160 - Assign](./questions/09160-hard-assign)
+- [09775 - Capitalize Object Keys](./questions/09775-hard-capitalize-nest-object-keys)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
