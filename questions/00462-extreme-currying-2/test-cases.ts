@@ -1,7 +1,8 @@
+/* eslint-disable ts/no-unsafe-function-type */
 import type { Equal, Expect } from '@type-challenges/utils'
 
-const curried1 = DynamicParamsCurrying((a: string, b: number, c: boolean) => true)
-const curried2 = DynamicParamsCurrying((a: string, b: number, c: boolean, d: boolean, e: boolean, f: string, g: boolean) => true)
+const curried1 = DynamicParamsCurrying((_a: string, _b: number, _c: boolean) => true)
+const curried2 = DynamicParamsCurrying((_a: string, _b: number, _c: boolean, _d: boolean, _e: boolean, _f: string, _g: boolean) => true)
 
 const curried1Return1 = curried1('123')(123)(true)
 const curried1Return2 = curried1('123', 123)(false)
@@ -24,18 +25,48 @@ const curried1ReturnWrong = curried1('123')(123)('wrong arg type')
 const curried1ReturnWrong2 = curried1('123')()(123)(true)
 
 type cases = [
-  Expect<Equal< typeof curried1Return1, boolean>>,
-  Expect<Equal< typeof curried1Return2, boolean>>,
-  Expect<Equal< typeof curried1Return3, boolean>>,
+  Expect<Equal< typeof curried1Return1, true>>,
+  Expect<Equal< typeof curried1Return2, true>>,
+  Expect<Equal< typeof curried1Return3, true>>,
 
-  Expect<Equal< typeof curried2Return1, boolean>>,
-  Expect<Equal< typeof curried2Return2, boolean>>,
-  Expect<Equal< typeof curried2Return3, boolean>>,
-  Expect<Equal< typeof curried2Return4, boolean>>,
-  Expect<Equal< typeof curried2Return5, boolean>>,
-  Expect<Equal< typeof curried2Return6, boolean>>,
-  Expect<Equal< typeof curried2Return7, boolean>>,
-  Expect<Equal< typeof curried2Return8, boolean>>,
-  Expect<Equal< typeof curried2Return9, boolean>>,
-  Expect<Equal< typeof curried2Return10, boolean>>,
+  Expect<Equal< typeof curried2Return1, true>>,
+  Expect<Equal< typeof curried2Return2, true>>,
+  Expect<Equal< typeof curried2Return3, true>>,
+  Expect<Equal< typeof curried2Return4, true>>,
+  Expect<Equal< typeof curried2Return5, true>>,
+  Expect<Equal< typeof curried2Return6, true>>,
+  Expect<Equal< typeof curried2Return7, true>>,
+  Expect<Equal< typeof curried2Return8, true>>,
+  Expect<Equal< typeof curried2Return9, true>>,
+  Expect<Equal< typeof curried2Return10, true>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type Overload<
+  Params extends unknown[],
+  Result,
+
+  ExistingParams extends unknown[] = [],
+> =
+  Params extends [infer First, ...infer Rest]
+    ?
+      & ((...p: [...ExistingParams, First]) => SplitArgs<Rest, Result>)
+      & (Overload<Rest, Result, [...ExistingParams, First]>)
+    : unknown
+
+type SplitArgs<Params extends unknown[], Result> =
+  Params extends [infer First, ...infer Rest]
+    ?
+      & ((p: First) => SplitArgs<Rest, Result>)
+      & ((...p: [First, ...Rest]) => Result)
+      & (Overload<Params, Result>)
+    : Result
+
+declare function DynamicParamsCurrying<Fn extends Function>(
+  fn: Fn
+): Fn extends (...p: infer Params) => infer Result
+  ? Params['length'] extends 0
+    ? () => Result
+    : SplitArgs<Params, Result>
+  : never

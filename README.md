@@ -142,6 +142,7 @@ Last synced: 2025-02-28
 - [00151 - Query String Parser](./questions/00151-extreme-query-string-parser)
 - [00216 - Slice](./questions/00216-extreme-slice)
 - [00274 - Integers Comparator](./questions/00274-extreme-integers-comparator)
+- [00462 - Extreme Curring](./questions/00462-extreme-currying-2)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
