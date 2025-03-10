@@ -141,6 +141,7 @@ Last synced: 2025-02-28
 - [00005 - Readonly Keys](./questions/00005-extreme-readonly-keys)
 - [00151 - Query String Parser](./questions/00151-extreme-query-string-parser)
 - [00216 - Slice](./questions/00216-extreme-slice)
+- [00274 - Integers Comparator](./questions/00274-extreme-integers-comparator)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
