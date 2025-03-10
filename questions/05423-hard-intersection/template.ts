@@ -51,8 +51,8 @@ type Intersection<List extends readonly unknown[]> =
  * any item that does not exist on any following interaction
  */
   type Intersection2<List extends readonly unknown[]> =
-  List extends [infer Head, ...infer Tail]
+  List extends [infer Head, ...infer Rest]
     ? Head extends unknown[]
-      ? Extract<Head[number], Intersection<Tail>>
-      : Extract<Head, Intersection<Tail>>
+      ? Extract<Head[number], Intersection<Rest>>
+      : Extract<Head, Intersection<Rest>>
     : unknown
