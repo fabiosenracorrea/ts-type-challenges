@@ -134,6 +134,7 @@ Last synced: 2025-02-28
 - [07258 - Object Key Paths](./questions/07258-hard-object-key-paths)
 - [08804 - Two Sum](./questions/08804-hard-two-sum)
 - [09155 - Valid Date](./questions/09155-hard-validdate)
+- [09160 - Assign](./questions/09160-hard-assign)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate

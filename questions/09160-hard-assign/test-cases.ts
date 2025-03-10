@@ -1,6 +1,7 @@
-import type { Equal, Expect } from '@type-challenges/utils'
+import type { Equal, Expect, MergeInsertions } from '@type-challenges/utils'
 
 // case1
+// eslint-disable-next-line ts/no-empty-object-type
 type Case1Target = {}
 
 type Case1Origin1 = {
@@ -90,3 +91,13 @@ type cases = [
   Expect<Equal<Assign<Case3Target, [Case3Origin1, Case3Origin2]>, Case3Answer>>,
   Expect<Equal<Assign<Case4Target, ['', 0]>, Case4Answer>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type Assign<T extends Record<string, unknown>, Mergers extends unknown[]> =
+  Mergers extends [infer Next extends Record<string, unknown>, ...infer Rest]
+    ? Assign<
+      Omit<T, keyof Next> & Next,
+      Rest
+    >
+    : MergeInsertions<T>
