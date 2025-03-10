@@ -140,6 +140,7 @@ Last synced: 2025-02-28
 - [15260 - Tree Path](./questions/15260-hard-tree-path-array)
 - [00005 - Readonly Keys](./questions/00005-extreme-readonly-keys)
 - [00151 - Query String Parser](./questions/00151-extreme-query-string-parser)
+- [00216 - Slice](./questions/00216-extreme-slice)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
