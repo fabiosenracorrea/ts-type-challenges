@@ -17,3 +17,7 @@ type ObjectFromEntries<T extends Entry> = CleanUp<
     FromEntries<T>
   >
 >
+
+type ObjectFromEntries2<T extends Entry> = {
+  [K in T as K[0]]: K[1]
+}
