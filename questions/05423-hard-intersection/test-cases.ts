@@ -60,3 +60,18 @@ type Intersection<List extends readonly unknown[]> =
       ? IsPresent<First, Rest> | Intersection<[StartRest, ...UnFlat<Rest>]>
       : never
     : never
+
+/**
+ * Solution 2
+ *
+ * youtube.com/watch?v=8-Z_MbkjkkY
+ *
+ * This works because the last unknown cancels out
+ * any item that does not exist on any following interaction
+ */
+  type Intersection2<List extends readonly unknown[]> =
+    List extends [infer Head, ...infer Tail]
+      ? Head extends unknown[]
+        ? Extract<Head[number], Intersection<Tail>>
+        : Extract<Head, Intersection<Tail>>
+      : unknown
