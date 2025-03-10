@@ -130,6 +130,7 @@ Last synced: 2025-02-28
 - [04037 - Is Palindrome](./questions/04037-hard-ispalindrome)
 - [05181 - Mutable Keys](./questions/05181-hard-mutable-keys)
 - [05423 - Intersection](./questions/05423-hard-intersection)
+- [06141 - Binary to Decimal](./questions/06141-hard-binary-to-decimal)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
