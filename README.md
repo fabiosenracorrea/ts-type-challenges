@@ -138,6 +138,7 @@ Last synced: 2025-02-28
 - [09775 - Capitalize Object Keys](./questions/09775-hard-capitalize-nest-object-keys)
 - [14188 - Run Length Encoding](./questions/14188-hard-run-length-encoding)
 - [15260 - Tree Path](./questions/15260-hard-tree-path-array)
+- [00005 - Readonly Keys](./questions/00005-extreme-readonly-keys)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
