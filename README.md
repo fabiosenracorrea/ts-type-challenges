@@ -127,6 +127,7 @@ Last synced: 2025-02-28
 - [02828 - Class Public Keys](./questions/02828-hard-classpublickeys)
 - [02857 - IsRequired Key](./questions/02857-hard-isrequiredkey)
 - [02949 - Object from Entries](./questions/02949-hard-objectfromentries)
+- [04037 - Is Palindrome](./questions/04037-hard-ispalindrome)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
