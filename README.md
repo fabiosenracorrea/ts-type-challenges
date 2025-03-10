@@ -133,6 +133,7 @@ Last synced: 2025-02-28
 - [06141 - Binary to Decimal](./questions/06141-hard-binary-to-decimal)
 - [07258 - Object Key Paths](./questions/07258-hard-object-key-paths)
 - [08804 - Two Sum](./questions/08804-hard-two-sum)
+- [09155 - Valid Date](./questions/09155-hard-validdate)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
