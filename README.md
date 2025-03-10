@@ -131,6 +131,7 @@ Last synced: 2025-02-28
 - [05181 - Mutable Keys](./questions/05181-hard-mutable-keys)
 - [05423 - Intersection](./questions/05423-hard-intersection)
 - [06141 - Binary to Decimal](./questions/06141-hard-binary-to-decimal)
+- [07258 - Object Key Paths](./questions/07258-hard-object-key-paths)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
