@@ -32,6 +32,14 @@ type IsBigger<A extends string | number, B extends string | number> =
     ? `${B}` extends BiggerMap[A][number] ? true : false
     : false
 
+// We can exploit TS string infer to do it in one go!
+// not sure if it impacts performance all that much,
+// since the original solution i came up with has direct access instead of inference
+type IsBigger2<A extends string | number, B extends string | number> =
+  '9876543210' extends `${string}${A}${string}${B}${string}`
+    ? true
+    : false
+
 type NumToTuple<T extends number | string> =
   `${T}` extends `${infer P extends number}${infer Rest}`
     ? [P, ...NumToTuple<Rest>]
