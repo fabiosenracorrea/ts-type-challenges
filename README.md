@@ -139,6 +139,7 @@ Last synced: 2025-02-28
 - [14188 - Run Length Encoding](./questions/14188-hard-run-length-encoding)
 - [15260 - Tree Path](./questions/15260-hard-tree-path-array)
 - [00005 - Readonly Keys](./questions/00005-extreme-readonly-keys)
+- [00151 - Query String Parser](./questions/00151-extreme-query-string-parser)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
