@@ -56,3 +56,26 @@ type Intersection<List extends readonly unknown[]> =
       ? Extract<Head[number], Intersection<Rest>>
       : Extract<Head, Intersection<Rest>>
     : unknown
+
+/**
+ * Solution 3
+ *
+ * youtube.com/watch?v=8-Z_MbkjkkY
+ *
+ * This one kinda illustrates the solution i came up with
+ * in an ultra simplified manner
+ *
+ * type a1 = 2 | 3 | 4
+ * type a2 = 2
+ * type a3 = a1 & a2 ==> 2!!!
+ *
+ * So we basically & all the items from the array and the common factors come out
+ *
+ * This is the best one to picture whats going on
+ */
+  type Intersection3<List extends readonly unknown[]> =
+  List extends [infer Head, ...infer Rest]
+    ?
+      & (Head extends unknown[] ? Head[number] : Head)
+      & Intersection3<Rest>
+    : unknown
