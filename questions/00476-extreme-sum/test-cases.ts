@@ -42,17 +42,12 @@ type TupleFrom<Size extends number, Acc extends readonly 1[] = []>
     ? Acc
     : TupleFrom<Size, [...Acc, 1]>
 
-type NumToTuple<T extends number> =
-  `${T}` extends `${infer Num extends number}${infer Rest extends number}`
-    ? [Num, ...NumToTuple<Rest>]
-    : [T]
-
 type DigitSum<
   NumberA extends number,
   NumberB extends number,
   Carry extends number = 0,
 
-  _RESULT = NumToTuple<
+  _RESULT = ToTuple<
     [...TupleFrom<NumberA>, ...TupleFrom<NumberB>, ...TupleFrom<Carry>]['length'] & number
   >,
 > =
