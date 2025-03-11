@@ -1,4 +1,5 @@
 import type { Equal, Expect } from '@type-challenges/utils'
+import type { GreaterThan } from '../04425-medium-greater-than/template'
 
 type cases = [
   Expect<Equal<Sort<[]>, []>>,
@@ -21,3 +22,48 @@ type cases = [
   Expect<Equal<Sort<[3, 2, 0, 1, 0, 0, 0], true>, [3, 2, 1, 0, 0, 0, 0]>>,
   Expect<Equal<Sort<[2, 4, 7, 6, 6, 6, 5, 8, 9], true>, [9, 8, 7, 6, 6, 6, 5, 4, 2]>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type BubleUp<
+  List extends number[],
+  Item extends number,
+  Acc extends number[] = [],
+> =
+  List extends [infer Next extends number, ...infer Rest extends number[]]
+    ? GreaterThan<Next, Item> extends true
+      ? BubleUp<Rest, Next, [...Acc, Item]>
+      : BubleUp<Rest, Item, [...Acc, Next]>
+    : [...Acc, Item]
+
+type ReverseArr<T extends unknown[]> =
+  T extends [infer First, ...infer Rest]
+    ? [...ReverseArr<Rest>, First]
+    : []
+
+type SortDesc<
+  List extends number[],
+> =
+  List extends [
+    infer First extends number,
+    ...infer Last extends number[],
+  ] ?
+    BubleUp<Last, First> extends [
+      ...infer LeftToSort extends number[],
+      infer Last extends number,
+    ]
+      ? [
+          ...SortDesc<LeftToSort>,
+          Last,
+        ]
+      : never
+    : List
+
+type Sort<
+  List extends number[],
+
+  ASC extends boolean = false,
+> =
+ ASC extends true
+   ? ReverseArr<SortDesc<List>>
+   : SortDesc<List>
