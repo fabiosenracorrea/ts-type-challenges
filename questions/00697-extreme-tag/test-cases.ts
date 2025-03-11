@@ -1,4 +1,6 @@
-import type { Equal, Expect, IsTrue } from '@type-challenges/utils'
+/* eslint-disable ts/no-empty-object-type */
+import type { Equal, Expect, IsAny, IsTrue } from '@type-challenges/utils'
+import type { IsUnion } from '../01097-medium-isunion/test-cases'
 
 /**
  * Tests of assignable of tagged variables.
@@ -86,10 +88,10 @@ type cases = [
   IsTrue<Equal<GetTags<Tag<never, 'foo'>>, ['foo']>>,
   IsTrue<Equal<GetTags<Tag<Tag<string, 'foo'>, 'bar'>>, ['foo', 'bar']>>,
   IsTrue<
-  Equal<
-  GetTags<Tag<Tag<Tag<{}, 'foo'>, 'bar'>, 'baz'>>,
-  ['foo', 'bar', 'baz']
-  >
+    Equal<
+      GetTags<Tag<Tag<Tag<{}, 'foo'>, 'bar'>, 'baz'>>,
+      ['foo', 'bar', 'baz']
+    >
   >,
 
   /**
@@ -159,3 +161,163 @@ type cases = [
   Expect<Equal<HasExactTags<Tag<Tag<Tag<{}, 'foo'>, 'bar'>, 'baz'>, ['foo', 'bar', 'baz']>, true>>,
   Expect<Equal<HasExactTags<Tag<Tag<void, 'foo'>, 'bar'>, ['foo', 'bar']>, true>>,
 ]
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type IsNull<T> = [T] extends [null] ? true : false
+
+type IsUnknown<T> = (
+	unknown extends T // `T` can be `unknown` or `any`
+	  ? IsNull<T> extends false // `any` can be `null`, but `unknown` can't be
+	    ? true
+	    : false
+	  : false
+)
+
+type Tagged = { [K in symbol]: { _______________tags___________: string[], __value__: any } }
+
+type IsTagged<
+  T,
+
+  _Ref = Extract<T, Tagged>,
+> =
+  [_Ref] extends [never]
+    ? false
+    : IsAny<_Ref> extends true
+      ? false
+      : symbol extends keyof _Ref
+        ? '__value__' extends keyof _Ref[symbol]
+          ? '_______________tags___________' extends keyof _Ref[symbol]
+            ? true
+            : false
+          : false
+        : false
+
+type GetTaggedValue<T, Fallback = T> =
+  IsTagged<T> extends true
+    ? T extends Tagged
+      ? T[symbol]['__value__']
+      : Fallback
+    : Fallback
+
+type GetTagsInner<B> =
+    IsTagged<B> extends true
+      ? B extends Tagged
+        ? B[symbol]['_______________tags___________']
+        : []
+      : []
+
+type GetTags<
+  B,
+
+  _Result = GetTagsInner<
+    Extract<NonNullable<B>, Tagged>
+  >,
+> =
+  IsUnion<NonNullable<B>> extends true
+    ? [Exclude<NonNullable<B>, Tagged | GetTaggedValue<B, never>>] extends [never]
+        ? _Result
+        : []
+    : _Result
+
+type ResolveTag<Target, T extends string> =
+  | (
+    & {
+      [K in symbol]: {
+        __value__: GetTaggedValue<Target>
+
+        _______________tags___________:
+        GetTags<Target> extends unknown[]
+          ? [...GetTags<Target>, T]
+          : [T]
+      }
+    }
+    & (
+        [Target] extends [never]
+          ? unknown
+          : IsAny<Target> extends true
+            ? unknown
+            : Target extends Record<string, unknown>
+              ? IsTagged<Target> extends true
+                ? unknown
+                : Target
+              : unknown
+      )
+  )
+  | (
+    IsAny<Target> extends true
+      ? never
+      : Target extends Record<string, unknown>
+        ? never
+        : IsTagged<Target> extends true
+          ? never
+          : IsUnknown<Target> extends true
+            ? never
+            : NonNullable<Target>
+  )
+
+type TagInner<B, T extends string> =
+  IsTagged<B> extends true
+    ? ResolveTag<Extract<B, Tagged>, T> | Exclude<B, Tagged> // prevent distribution to create more tag unions
+    : [B] extends [never]
+        ? ResolveTag<B, T>
+        : IsAny<B> extends true
+          ? ResolveTag<B, T>
+          : B extends undefined | null
+            ? B
+            : ResolveTag<B, T>
+
+type Tag<B, T extends string> =
+  IsUnion<B> extends true
+    ? NonNullable<TagInner<B, T>>
+    : TagInner<B, T>
+
+type UnTag<B> = IsTagged<B> extends true
+  ? B extends Tagged
+    ? B[symbol]['__value__']
+    : B
+  : B
+
+type HasTagInner<B, T extends string, _Tags = GetTags<NonNullable<B>>> =
+  _Tags extends string[]
+    ? T extends _Tags[number]
+      ? true
+      : false
+    : false
+
+type HasTag<B, T extends string> = HasTagInner<B, T> extends true ? true : false
+
+/**
+ * Checks if the tags were applied in succession
+ */
+type HasTagsInner<
+  B,
+  T extends readonly string[],
+
+  _TAGS = GetTags<B>,
+
+  CheckStarted extends boolean = false,
+> =
+  _TAGS extends readonly [infer NextTag extends string, ...infer Rest extends readonly string[]]
+    ? T extends readonly [infer TagToCheck extends string, ...infer RestTags extends readonly string[]]
+      ? NextTag extends TagToCheck
+        ? HasTagsInner<B, RestTags, Rest, true>
+        : CheckStarted extends true
+          ? false
+          : HasTagsInner<B, [TagToCheck, ...RestTags], Rest>
+      : true
+    : T['length'] extends 0
+      ? true
+      : false
+
+type HasTags<
+  B,
+  T extends readonly string[],
+> = true extends HasTagsInner<B, T> ? true : false
+
+type HasExactTags<B, T extends readonly string[], _TAGS = GetTags<B>> =
+  _TAGS extends unknown[]
+    ? _TAGS['length'] extends T['length']
+      ? HasTags<B, T>
+      : false
+    : false

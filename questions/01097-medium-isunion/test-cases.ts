@@ -19,7 +19,7 @@ type cases = [
 // ------------------- IMPLEMENTATION --------------------------- //
 
 // Similar approach to the Permutation exercise
-type IsUnion<T, Acc = T> =
+export type IsUnion<T, Acc = T> =
   [T] extends [never]
     ? false
     : Acc extends Acc

@@ -145,6 +145,7 @@ Last synced: 2025-02-28
 - [00462 - Extreme Curring](./questions/00462-extreme-currying-2)
 - [00476 - Sum](./questions/00476-extreme-sum)
 - [00517 - Multiply](./questions/00517-extreme-multiply)
+- [00697 - Tag](./questions/00697-extreme-tag)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
