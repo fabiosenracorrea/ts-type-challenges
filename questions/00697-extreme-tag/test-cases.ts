@@ -163,7 +163,6 @@ type cases = [
 ]
 
 // ------------------- IMPLEMENTATION --------------------------- //
-
 type IsNull<T> = [T] extends [null] ? true : false
 
 type IsUnknown<T> = (
@@ -278,7 +277,11 @@ type UnTag<B> = IsTagged<B> extends true
     : B
   : B
 
-type HasTagInner<B, T extends string, _Tags = GetTags<NonNullable<B>>> =
+type HasTagInner<
+  B,
+  T extends string,
+  _Tags = GetTags<NonNullable<B>>,
+> =
   _Tags extends string[]
     ? T extends _Tags[number]
       ? true
@@ -315,7 +318,12 @@ type HasTags<
   T extends readonly string[],
 > = true extends HasTagsInner<B, T> ? true : false
 
-type HasExactTags<B, T extends readonly string[], _TAGS = GetTags<B>> =
+type HasExactTags<
+  B,
+  T extends readonly string[],
+
+  _TAGS = GetTags<B>,
+> =
   _TAGS extends unknown[]
     ? _TAGS['length'] extends T['length']
       ? HasTags<B, T>

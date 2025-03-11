@@ -20,12 +20,13 @@
  * We need to handle edge cases that are greedy to checks, such as never, unknown and any,
  * as to prevent `string extends any` and such
  *
- * With the core concept, we need to fine tune the types to adjust for all those edge cases
- *
  * Check comments to see the full reasoning to each.
  *
  * Yes, it takes time to understand it. Play around with the test results to
  * see what each call results into
+ *
+ * Check my breakdown on the repo:
+ *
  */
 type IsNull<T> = [T] extends [null] ? true : false
 
@@ -268,7 +269,11 @@ type UnTag<B> = IsTagged<B> extends true
  * Because TS can't really infer GetTags<X> as a list with certainty,
  * we add narrow for it with the extends
  */
-type HasTagInner<B, T extends string, _Tags = GetTags<NonNullable<B>>> =
+type HasTagInner<
+  B,
+  T extends string,
+  _Tags = GetTags<NonNullable<B>>,
+> =
   _Tags extends string[]
     ? T extends _Tags[number]
       ? true
@@ -317,9 +322,17 @@ type HasTagsInner<
 type HasTags<
   B,
   T extends readonly string[],
-> = true extends HasTagsInner<B, T> ? true : false
+> =
+  true extends HasTagsInner<B, T>
+    ? true
+    : false
 
-type HasExactTags<B, T extends readonly string[], _TAGS = GetTags<B>> =
+type HasExactTags<
+  B,
+  T extends readonly string[],
+
+  _TAGS = GetTags<B>,
+> =
   _TAGS extends unknown[]
     ? _TAGS['length'] extends T['length']
       ? HasTags<B, T>
