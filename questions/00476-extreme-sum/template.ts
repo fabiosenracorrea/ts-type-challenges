@@ -26,7 +26,7 @@ type TupleFrom<Size extends number, Acc extends readonly 1[] = []>
     ? Acc
     : TupleFrom<Size, [...Acc, 1]>
 
-type DigitSum<
+export type DigitSum<
   NumberA extends number,
   NumberB extends number,
   Carry extends number = 0,
@@ -41,7 +41,7 @@ type DigitSum<
       ? [0, Digit]
       : []
 
-type TupleSum<
+export type TupleSum<
   NumberA extends number[],
   NumberB extends number[],
 
@@ -68,7 +68,7 @@ type JoinResult<T extends number[]> =
     ? `${Next}${JoinResult<Rest>}`
     : ''
 
-type ExecSum<
+export type ExecSum<
   NumberA extends number[],
   NumberB extends number[],
 > =
@@ -76,7 +76,7 @@ type ExecSum<
     TupleSum<NumberA, NumberB>
   >
 
-type Sum<
+export type Sum<
   NumberA extends number | string | bigint,
   NumberB extends number | string | bigint,
 > =

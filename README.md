@@ -144,6 +144,7 @@ Last synced: 2025-02-28
 - [00274 - Integers Comparator](./questions/00274-extreme-integers-comparator)
 - [00462 - Extreme Curring](./questions/00462-extreme-currying-2)
 - [00476 - Sum](./questions/00476-extreme-sum)
+- [00517 - Multiply](./questions/00517-extreme-multiply)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
