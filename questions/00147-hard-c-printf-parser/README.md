@@ -23,4 +23,43 @@ type ControlsMap = {
 ```
 
 
-<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/147/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/147/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/147/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/147/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end--> 
+ 
+### Solution
+ 
+ 
+```ts
+type ControlsMap = {
+  c: 'char'
+  s: 'string'
+  d: 'dec'
+  o: 'oct'
+  h: 'hex'
+  f: 'float'
+  p: 'pointer'
+}
+
+type GetCommand<First extends string, Second extends string> =
+   First extends '%'
+     ? Second extends keyof ControlsMap
+       ? [ControlsMap[Second]]
+       : []
+     : []
+
+type ShouldAppendSecond<First extends string, Second extends string> =
+   First extends '%'
+     ? false
+     : Second extends '%'
+       ? true
+       : false
+
+type ParsePrintFormat<T extends string> =
+  T extends `${infer First}${infer Second}${infer Rest}`
+    ? [
+        ...GetCommand<First, Second>,
+        ...ParsePrintFormat<
+          ShouldAppendSecond<First, Second> extends true ? `${Second}${Rest}` : Rest
+        >,
+      ]
+    : []
+```

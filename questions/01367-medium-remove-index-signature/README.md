@@ -14,3 +14,29 @@ type A = RemoveIndexSignature<Foo> // expected { foo(): void }
 ```
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/1367/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/1367/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+/**
+ * This works because:
+ *  'hello' extends string => true
+ *  string extends 'hello' => false
+ *
+ * We want only the actual defined keys (eg 'hello') to pass on
+ */
+type RemovePrimitive<K> =
+  string extends K
+    ? never
+    : number extends K
+      ? never
+      : symbol extends K
+        ? never
+        : K
+
+type RemoveIndexSignature<T> = {
+  [K in keyof T as RemovePrimitive<K>]: T[K];
+}
+```

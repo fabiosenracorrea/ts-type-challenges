@@ -15,3 +15,14 @@ type Result = AppendArgument<Fn, boolean>
 
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/191/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/191/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+type AppendArgument<Fn extends (...p: any[]) => any, Arg> =
+  Fn extends (...r: infer Params) => any
+    ? (...p: [...Params, Arg]) => ReturnType<Fn>
+    : (p: Arg) => ReturnType<Fn>
+```

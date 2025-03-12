@@ -4,3 +4,18 @@ Implement the advanced util type `OptionalKeys<T>`, which picks all the optional
 
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/90/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/90/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <hr><h3>Related Challenges</h3><a href="https://github.com/type-challenges/type-challenges/blob/main/questions/00089-hard-required-keys/README.md" target="_blank"><img src="https://img.shields.io/badge/-89%E3%83%BBRequired%20Keys-de3d37" alt="89・Required Keys"/></a>  <a href="https://github.com/type-challenges/type-challenges/blob/main/questions/00005-extreme-readonly-keys/README.md" target="_blank"><img src="https://img.shields.io/badge/-5%E3%83%BBGet%20Readonly%20Keys-b11b8d" alt="5・Get Readonly Keys"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+/**
+ * GetOptional was done before this one ;)
+ */
+type GetOptional_<T extends Record<string, unknown>, Req extends T = Required<T>> = {
+  [K in keyof T as T[K] extends Req[K] ? never : K]?: T[K]
+}
+
+type OptionalKeys<T extends Record<string, unknown>> = keyof GetOptional_<T>
+```

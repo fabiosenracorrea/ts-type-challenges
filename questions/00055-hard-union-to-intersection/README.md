@@ -9,4 +9,26 @@ type I = UnionToIntersection<'foo' | 42 | true> // expected to be 'foo' & 42 & t
 ```
 
 
-<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/55/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/55/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/55/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/55/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end--> 
+ 
+### Solution
+ 
+ 
+```ts
+/**
+ * Why this works?
+ * youtube.com/watch?v=43aKbkDgN_w
+ *
+ * 1. T extends T forces distributive
+ * 2. (p: T) => any | (p: U) => any
+ *
+ * To INFER (!) an argument that satisfies T and U
+ * the type of that inference must be T & U, as the rest is the same
+ */
+type UnionToIntersection<T> =
+  (
+    T extends T ? (arg: T) => any : never
+  ) extends (param: infer P) => void
+    ? P
+    : never
+```

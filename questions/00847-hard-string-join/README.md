@@ -23,4 +23,16 @@ join('-')('a') // = 'a'
 ```
 
 
-<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/847/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/847/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/847/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/847/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end--> 
+ 
+### Solution
+ 
+ 
+```ts
+type Joined<Delimiter extends string, Chars extends string[], Add extends boolean = false> =
+  Chars extends [infer Next extends string, ...infer Rest extends string[]]
+    ? `${Add extends true ? Delimiter : ''}${Next}${Joined<Delimiter, Rest, true>}`
+    : ''
+
+declare function join<Delimiter extends string>(delimiter: Delimiter): <Chars extends string[]>(...parts: Chars) => Joined<Delimiter, Chars>
+```

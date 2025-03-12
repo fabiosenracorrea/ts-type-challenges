@@ -3,3 +3,33 @@
 Get an `Object` that is the difference between `O` & `O1`
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/645/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/645/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+type Prettify<T> = {
+  [K in keyof T]: T[K]
+}
+
+type Diff<T, O> = Prettify<{
+  [TKey in keyof T as TKey extends keyof O ? never : TKey]: T[TKey]
+} & {
+  [OKey in keyof O as OKey extends keyof T ? never : OKey]: O[OKey]
+}>
+
+// Using &
+
+/**
+ * This works because if we do keyof T & keyof O we get all the keys present on both!
+ */
+type Diff2<T, O> = {
+  [Key in Exclude<keyof T | keyof O, keyof T & keyof O>]:
+  Key extends keyof T
+    ? T[Key]
+    : Key extends keyof O
+      ? O[Key]
+      : never
+}
+```

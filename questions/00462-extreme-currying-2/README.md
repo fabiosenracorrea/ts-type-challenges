@@ -30,3 +30,38 @@ In this challenge, `DynamicParamsCurrying` may take a function with zero to mult
 
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/462/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/462/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <hr><h3>Related Challenges</h3><a href="https://github.com/type-challenges/type-challenges/blob/main/questions/00017-hard-currying-1/README.md" target="_blank"><img src="https://img.shields.io/badge/-17%E3%83%BBCurrying%201-de3d37" alt="17・Currying 1"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+/* eslint-disable ts/no-unsafe-function-type */
+type Overload<
+  Params extends unknown[],
+  Result,
+
+  ExistingParams extends unknown[] = [],
+> =
+  Params extends [infer First, ...infer Rest]
+    ?
+      & ((...p: [...ExistingParams, First]) => SplitArgs<Rest, Result>)
+      & (Overload<Rest, Result, [...ExistingParams, First]>)
+    : unknown
+
+type SplitArgs<Params extends unknown[], Result> =
+  Params extends [infer First, ...infer Rest]
+    ?
+      & ((p: First) => SplitArgs<Rest, Result>)
+      & ((...p: [First, ...Rest]) => Result)
+      & (Overload<Params, Result>)
+    : Result
+
+declare function DynamicParamsCurrying<Fn extends Function>(
+  fn: Fn
+): Fn extends (...p: infer Params) => infer Result
+  ? Params['length'] extends 0
+    ? () => Result
+    : SplitArgs<Params, Result>
+  : never
+```

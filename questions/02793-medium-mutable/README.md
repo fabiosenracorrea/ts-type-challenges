@@ -17,3 +17,29 @@ type MutableTodo = Mutable<Todo> // { title: string; description: string; comple
 
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/2793/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/2793/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+// Otherwise the readonly is still there
+type GetKeys<T> = { [K in keyof T]: K }[keyof T]
+
+type GetItems<T extends readonly any[]> =
+  T extends readonly [infer P, ...infer Rest]
+    ? [P, ...Rest]
+    : never
+
+type Mutable<T extends Record<string, unknown> | readonly any[]> =
+  T extends Record<string, unknown>
+    ? { [K in GetKeys<T>]: T[K] }
+    : T extends readonly any[]
+      ? GetItems<T>
+      : never
+
+// Removing Explicitly...
+type Mutable1<T extends Record<string, unknown> | readonly any[]> = {
+  -readonly [K in keyof T]: T[K]
+}
+```

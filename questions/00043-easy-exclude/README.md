@@ -10,4 +10,43 @@ For example:
 type Result = MyExclude<'a' | 'b' | 'c', 'a'> // 'b' | 'c'
 ```
 
-<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/43/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/43/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/43/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/43/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end--> 
+ 
+### Solution
+ 
+ 
+```ts
+/**
+ * Note: this works because any type operation
+ * against a Union is distributive.
+ *
+ * That is, if we have:
+ *
+ * Exclude<string | number, string>
+ *
+ * Result = (string extends string ? never : string) | (number extends string ? never : number)
+ * Result = (never) | (number)
+ * Result = number
+ */
+type MyExclude<T, U> = T extends U ? never : T
+```
+ 
+ 
+### Solution
+ 
+ 
+```ts
+/**
+ * Note: this works because any type operation
+ * against a Union is distributive.
+ *
+ * That is, if we have:
+ *
+ * Exclude<string | number, string>
+ *
+ * Result = (string extends string ? never : string) | (number extends string ? never : number)
+ * Result = (never) | (number)
+ * Result = number
+ */
+type MyExclude<T, U> = T extends U ? never : T
+```

@@ -10,3 +10,26 @@ type flatten = Flatten<[1, 2, [3, 4], [[[5]]]]> // [1, 2, 3, 4, 5]
 
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/459/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/459/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+type Flatten<T extends any[], Result extends any[] = []> =
+  T extends [infer First, ...infer Rest]
+    ? First extends any[]
+      ? Flatten<Rest, [...Result, ...Flatten<First>]>
+      : Flatten<Rest, [...Result, First]>
+    : Result
+
+/**
+ * Solution 2 - No accumulator
+ */
+type Flatt<T extends any[]> =
+  T extends [infer First, ...infer Rest]
+    ? First extends any[]
+      ? Flatt<[...First, ...Rest]>
+      : [First, ...Flatt<Rest>]
+    : T
+```

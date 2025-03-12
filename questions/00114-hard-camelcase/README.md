@@ -11,3 +11,43 @@ type camelCase2 = CamelCase<'HELLO_WORLD_WITH_TYPES'> // expected to be same as 
 
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/114/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/114/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <hr><h3>Related Challenges</h3><a href="https://github.com/type-challenges/type-challenges/blob/main/questions/00612-medium-kebabcase/README.md" target="_blank"><img src="https://img.shields.io/badge/-612%E3%83%BBKebabCase-d9901a" alt="612・KebabCase"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+type IsLetter_<T extends string> = Uppercase<T> extends Lowercase<T> ? false : true
+
+/**
+ * Removes the '_' only if the following char is a letter
+ */
+type ShouldRemoveChar<Char extends string, RemainingChars extends string> =
+  Char extends '_'
+    ? RemainingChars extends `${infer Next}${string}`
+      ? IsLetter_<Next>
+      : false
+    : false
+
+type ParseNext<
+  Char extends string,
+  ShouldUpper extends boolean,
+  RemainingChars extends string,
+> =
+  ShouldRemoveChar<Char, RemainingChars> extends true
+    ? ''
+    : ShouldUpper extends true ? Uppercase<Char> : Lowercase<Char>
+
+type CamelCase<
+  T extends string,
+  Transform extends boolean = false,
+> =
+  T extends `${infer NextChar}${infer Rest}`
+    ? `${
+      ParseNext<NextChar, Transform, Rest>
+    }${
+      CamelCase<Rest, NextChar extends '_' ? true : false>
+    }`
+
+    : Lowercase<T>
+```

@@ -10,3 +10,13 @@ type I = GetRequired<{ foo: number, bar?: string }> // expected to be { foo: num
 
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/57/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/57/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <hr><h3>Related Challenges</h3><a href="https://github.com/type-challenges/type-challenges/blob/main/questions/00059-hard-get-optional/README.md" target="_blank"><img src="https://img.shields.io/badge/-59%E3%83%BBGet%20Optional-de3d37" alt="59・Get Optional"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+type GetRequired<T extends Record<string, unknown>, Req extends T = Required<T>> = {
+  [K in keyof T as T[K] extends Req[K] ? K : never]: T[K]
+}
+```

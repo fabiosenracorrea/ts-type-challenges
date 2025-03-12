@@ -15,3 +15,61 @@ type tail2 = Last<arr2> // expected to be 1
 ```
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/15/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/15/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <hr><h3>Related Challenges</h3><a href="https://github.com/type-challenges/type-challenges/blob/main/questions/00014-easy-first/README.md" target="_blank"><img src="https://img.shields.io/badge/-14%E3%83%BBFirst%20of%20Array-7aad0c" alt="14・First of Array"/></a>  <a href="https://github.com/type-challenges/type-challenges/blob/main/questions/00016-medium-pop/README.md" target="_blank"><img src="https://img.shields.io/badge/-16%E3%83%BBPop-d9901a" alt="16・Pop"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+/**
+ * Solution 1
+ *
+ * length magic
+ *
+ * We can't use T['length'] as, obviously, thats lastIndex+1
+ *
+ * but...
+ */
+
+type Last<T extends readonly unknown[]> =
+  T extends [infer _First, ...infer Rest]
+    ? T[Rest['length']]
+    : never
+
+// ------------------------------------------------------------- //
+
+/**
+ * Solution 2
+ *
+ * Recursive Extraction
+ */
+
+type ArrayHasItem<T extends unknown[]> =
+  T extends [infer P, ...infer _rest]
+    ? P extends never
+      ? false
+      : true
+    : false
+
+type LastR<T extends readonly unknown[]> =
+  T extends [infer First, ...infer Rest]
+    ? ArrayHasItem<Rest> extends true
+      ? LastR<Rest>
+      : First
+    : never
+
+// ------------------------------------------------------------- //
+
+/**
+ * Solution 3
+ *
+ * Inverting the rest param
+ *
+ * Taken from youtube.com/watch?v=ZS6zfnWdHr8
+ */
+
+type LastT<T extends readonly unknown[]> =
+  T extends [...infer _Rest, infer LastItem]
+    ? LastItem
+    : never
+```

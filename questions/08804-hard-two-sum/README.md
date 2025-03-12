@@ -10,3 +10,37 @@ type sum2 = TwoSum<[2, 7, 11, 15], 15> // false
 ```
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/8804/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/8804/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+type TupleFrom<Size extends number, Acc extends readonly 1[] = []>
+  = Acc['length'] extends Size
+    ? Acc
+    : TupleFrom<Size, [...Acc, 1]>
+
+type Add<
+  NumberA extends number,
+  NumberB extends number,
+> = [...TupleFrom<NumberA>, ...TupleFrom<NumberB>]['length']
+
+type HasSum<
+  NumberA extends number,
+  Checkers extends readonly number[],
+  Sum extends number,
+> =
+  Checkers extends [infer NumberB extends number, ...infer Rest extends number[]]
+    ? Add<NumberA, NumberB> extends Sum
+      ? true
+      : HasSum<NumberA, Rest, Sum>
+    : false
+
+type TwoSum<Numbers extends readonly number[], Sum extends number> =
+  Numbers extends [infer First extends number, ...infer Rest extends number[]]
+    ? HasSum<First, Rest, Sum> extends true
+      ? true
+      : TwoSum<Rest, Sum>
+    : false
+```

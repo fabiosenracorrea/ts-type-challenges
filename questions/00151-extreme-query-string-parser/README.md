@@ -10,4 +10,48 @@ Some detailed requirements:
 - If values with the same key appear more than once, it must be treated as once. For example, `key=value&key=value` must be treated as `key=value` only.
 
 
-<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/151/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/151/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/151/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/151/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end--> 
+ 
+### Solution
+ 
+ 
+```ts
+/* eslint-disable ts/no-empty-object-type */
+import type { MergeInsertions } from '@type-challenges/utils'
+
+type EnsureArray<T> = T extends unknown[] ? T : [T]
+
+type ToArray<
+  Current,
+  NewValue,
+
+  AS_ARRAY extends unknown[] = EnsureArray<Current>,
+> =
+  NewValue extends AS_ARRAY[number]
+    ? AS_ARRAY['length'] extends 1
+      ? NewValue
+      : AS_ARRAY
+    : [...AS_ARRAY, NewValue]
+
+type Append<
+  Result,
+  Key extends PropertyKey,
+  Value,
+> =
+  Key extends keyof Result
+    ? { [K in keyof Result]: Key extends K ? ToArray<Result[K], Value> : Result[K] }
+    : Result & { [K in Key]: Value }
+
+type ParseQuery<Query extends string, Result = {}> =
+  Query extends `${infer Param1}${'&'}${infer Rest}`
+    ? Param1 extends `${infer Key}=${infer Value}`
+      ? ParseQuery<Rest, Append<Result, Key, Value>>
+      : ParseQuery<Rest, Append<Result, Param1, true>>
+    : Query extends `${infer Key}=${infer Value}`
+      ? Append<Result, Key, Value>
+      : Query extends ''
+        ? Result
+        : Append<Result, Query, true>
+
+type ParseQueryString<T extends string> = MergeInsertions<ParseQuery<T>>
+```

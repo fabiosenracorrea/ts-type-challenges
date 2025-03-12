@@ -40,3 +40,46 @@ For more specified cases, check out the Test Cases section.
 
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/213/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/213/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <hr><h3>Related Challenges</h3><a href="https://github.com/type-challenges/type-challenges/blob/main/questions/00006-hard-simple-vue/README.md" target="_blank"><img src="https://img.shields.io/badge/-6%E3%83%BBSimple%20Vue-de3d37" alt="6・Simple Vue"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+type FromConstructor<T> =
+  T extends StringConstructor
+    ? string
+    : T extends NumberConstructor
+      ? number
+      : T extends BooleanConstructor
+        ? boolean
+        : T extends RegExpConstructor
+          ? RegExp
+          : T extends unknown[]
+            ? FromConstructor<T[number]>
+            : T extends new () => infer P
+              ? P
+              : any
+
+type FromProps<T> = {
+  [K in keyof T]:
+  T[K] extends { type: any }
+    ? FromConstructor<T[K]['type']>
+    : FromConstructor<T[K]>
+}
+
+declare function VueBasicProps<
+  Props,
+  Data,
+  Computed extends Record<string, () => any>,
+  Methods,
+>(options: {
+  props: Props
+
+  data: (this: FromProps<Props>, ...p: never) => Data
+
+  computed: Computed & ThisType<Data>
+
+  methods: Methods & ThisType<FromProps<Props> & Data & Methods & ToReturnType<Computed>>
+}): void
+```

@@ -10,3 +10,47 @@ type Sample2 = AnyOf<[0, "", false, [], {}]> // expected to be false.
 ```
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/949/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/949/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+type Falsy = false | null | [] | undefined | 0 | ''
+
+type IsFalsy<T> =
+  T extends Falsy
+    ? true
+    : keyof T extends never // empty obj check
+      ? true
+      : false
+
+type AnyOf<T extends unknown[]> =
+  T extends [infer First, ...infer Rest]
+    ? IsFalsy<First> extends true
+      ? AnyOf<Rest>
+      : true
+    : false
+
+/**
+ * Solution 2 - elegant empty obj check
+ */
+type Falsy2 = false | null | [] | undefined | 0 | '' | Record<string, never>
+
+type AnyOf2<T extends unknown[]> =
+  T extends [infer First, ...infer Rest]
+    ? First extends Falsy2
+      ? AnyOf<Rest>
+      : true
+    : false
+
+/**
+ * Solution 3 - Array[number]!
+ *
+ * If all the items extends Falsy, nothing inside of it matters
+ */
+type AnyOf3<T extends unknown[]> =
+  T[number] extends Falsy2
+    ? false
+    : true
+```

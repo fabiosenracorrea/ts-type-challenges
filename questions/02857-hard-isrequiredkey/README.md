@@ -11,4 +11,37 @@ type C = IsRequiredKey<{ a: number, b?: string },'b' | 'a'> // false
 ```
 
 
-<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/2857/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/2857/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/2857/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/2857/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end--> 
+ 
+### Solution
+ 
+ 
+```ts
+type _GetRequired<T extends Record<string, unknown>, Req extends T = Required<T>> = {
+  [K in keyof T as T[K] extends Req[K] ? K : never]: T[K]
+}
+
+type _RequiredKeys<T extends Record<string, unknown>> = keyof _GetRequired<T>
+
+/**
+ * This check is distributive, meaning:
+ *
+ * Is<a> => true
+ * Is<b> => false
+ * Result = true | false = boolean
+ *
+ * To account for this, we perform the distributive check
+ * and verify if they all colide to `true`
+ *
+ * Important to note the order of X extends Y
+ */
+type InnerCheck<T extends Record<string, unknown>, Keys extends keyof T> = Keys extends _RequiredKeys<T> ? true : false
+
+type IsRequiredKey<T extends Record<string, unknown>, Keys extends keyof T> = InnerCheck<T, Keys> extends true ? true : false
+
+// More direct
+type IsRequiredKey2<T, K extends keyof T> =
+  T[K] extends Required<T>[K]
+    ? true
+    : false
+```

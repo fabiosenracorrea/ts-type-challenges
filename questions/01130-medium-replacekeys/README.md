@@ -36,3 +36,15 @@ type ReplacedNotExistKeys = ReplaceKeys<Nodes, "name", { aa: number }> // {type:
 ```
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/1130/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/1130/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+type ReplaceKeys<Obj, ReplaceKeys extends PropertyKey, NewValues> = {
+  [K in keyof Obj]: K extends ReplaceKeys
+    ? K extends keyof NewValues ? NewValues[K] : never
+    : Obj[K]
+}
+```

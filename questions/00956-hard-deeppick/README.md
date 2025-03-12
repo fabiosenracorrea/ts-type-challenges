@@ -28,3 +28,38 @@ type T3 = DeepPick<obj, 'name' | 'friend.name' |  'friend.family.name'>  // { na
 
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/956/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/956/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+type DeepPick<T, Keys extends string> =
+  UnionToIntersection<
+    Keys extends ''
+      ? never
+      :
+        & (Keys extends keyof T ? Pick<T, Extract<keyof T, Keys>> : unknown)
+        &
+        (
+            Keys extends `${keyof T & string}.${string}`
+              ? {
+                  [K in Keys as K extends `${infer Start extends keyof T & string}.${string}` ? Start : never]:
+                  K extends `${infer Start extends keyof T & string}.${infer DeepPath}`
+                    ? DeepPick<T[Start], DeepPath>
+                    : never
+                }
+              : unknown
+          )
+  >
+
+// Using a modification of the "Get" type we build earlier
+type DeepGet<T, Prop extends string> =
+  Prop extends keyof T
+    ? { [K in Prop]: T[Prop] }
+    : Prop extends `${infer FirstPath extends keyof T & string}.${infer Rest}`
+      ? { [K in FirstPath]: DeepGet<T[FirstPath], Rest> }
+      : never
+
+type DeepPick2<T, Keys extends string> = UnionToIntersection<DeepGet<T, Keys>>
+```

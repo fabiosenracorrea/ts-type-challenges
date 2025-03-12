@@ -18,3 +18,33 @@ type result = ObjectFromEntries<ModelEntries> // expected to be Model
 
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/2949/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/2949/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <hr><h3>Related Challenges</h3><a href="https://github.com/type-challenges/type-challenges/blob/main/questions/00055-hard-union-to-intersection/README.md" target="_blank"><img src="https://img.shields.io/badge/-55%E3%83%BBUnion%20to%20Intersection-de3d37" alt="55・Union to Intersection"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+type Entry = readonly [PropertyKey, unknown]
+
+type FromEntries<T extends Entry> =
+  T extends [
+    infer Key extends PropertyKey,
+    infer Value,
+  ]
+    ? { [K in Key]: Value }
+    : unknown
+
+type CleanUp<T> = {
+  [K in keyof T]: T[K]
+}
+
+type ObjectFromEntries<T extends Entry> = CleanUp<
+  UnionToIntersection<
+    FromEntries<T>
+  >
+>
+
+type ObjectFromEntries2<T extends Entry> = {
+  [K in T as K[0]]: K[1]
+}
+```

@@ -11,3 +11,23 @@ type B = If<false, 'a', 'b'> // expected to be 'b'
 
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/268/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/268/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+type If<T extends boolean, Y, N> = T extends true ? Y : N
+
+// ------------------- EXTENDING... --------------------------- //
+
+/**
+ * Considers Falsy values too! (Except for NaN)
+ */
+type Falsy = false | undefined | null | 0 | ''
+
+type IfExtended<T, Y, N> = T extends Falsy ? N : Y
+
+// Note: this does not narrow if something like null | number | string | undefined
+// is passed, as we can't guarantee which would be
+```

@@ -37,3 +37,53 @@ const instance = SimpleVue({
 ```
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/6/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/6/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <hr><h3>Related Challenges</h3><a href="https://github.com/type-challenges/type-challenges/blob/main/questions/00213-hard-vue-basic-props/README.md" target="_blank"><img src="https://img.shields.io/badge/-213%E3%83%BBVue%20Basic%20Props-de3d37" alt="213・Vue Basic Props"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+type ToReturnType<T extends Record<string, () => any>> = {
+  [K in keyof T]: ReturnType<T[K]>
+}
+
+interface BaseMethods<
+  Data extends object,
+  Computed extends Record<string, (this: Data, ...p: never) => any>,
+> {
+  [key: string]: (this: Data & ToReturnType<Computed> & this, ...p: any[]) => any
+}
+
+interface Vue<
+  Data extends object,
+  Computed extends Record<string, (this: Data, ...p: never) => any>,
+  Methods extends BaseMethods<Data, Computed>,
+> {
+  data: (this: never, ...p: never) => Data
+
+  computed?: Computed
+
+  methods: {
+    [K in keyof Methods]: (this: Data & ToReturnType<Computed> & Methods, ...p: Parameters<Methods[K]>) => any
+  }
+}
+
+declare function SimpleVue<
+  Data extends object,
+  Computed extends Record<string, (this: Data, ...p: never) => any>,
+  Methods extends BaseMethods<Data, Computed>,
+>(options: Vue<Data, Computed, Methods>): any
+
+// Simpler approach using ThisType
+declare function SimpleVue2<
+  Data extends object,
+  Computed extends Record<string, (this: Data, ...p: never) => any>,
+  Methods,
+>(options: {
+  data: (this: never, ...p: never) => Data
+
+  computed: Computed & ThisType<Computed>
+
+  methods: Methods & ThisType<Data & Methods & ToReturnType<Computed>>
+}): any
+```

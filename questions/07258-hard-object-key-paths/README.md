@@ -12,4 +12,37 @@ type T3 = ObjectKeyPaths<{ books: [{ name: string; price: number }] }>; // expec
 ```
 
 
-<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/7258/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/7258/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/7258/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/7258/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end--> 
+ 
+### Solution
+ 
+ 
+```ts
+type IndexPath<Ref extends readonly 1[]> =
+  | `.[${Ref['length']}]`
+  | `[${Ref['length']}]`
+  | `.${Ref['length']}`
+
+type ListPaths<T extends readonly any[], IndexRef extends readonly 1[] = []> =
+    T extends readonly [infer P, ...infer Rest]
+      ?
+      | IndexPath<IndexRef>
+      | ListPaths<Rest, [...IndexRef, 1]>
+      | (P extends Record<string, unknown> ? `${IndexPath<IndexRef>}.${ObjectKeyPaths<P>}` : never)
+      : never
+
+type ObjectKeyPaths<T extends Record<string, unknown>> = {
+  [Key in Exclude<keyof T, symbol>]:
+    | Key
+    | (
+      T[Key] extends Record<string, unknown>
+        ? `${Key}.${ObjectKeyPaths<T[Key]>}`
+        : never
+    )
+    | (
+      T[Key] extends readonly any[]
+        ? `${Key}${ListPaths<T[Key]>}`
+        : never
+    )
+}[Exclude<keyof T, symbol>]
+```

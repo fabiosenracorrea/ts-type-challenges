@@ -23,3 +23,31 @@ type R5 = PercentageParser<PString5> // expected ["", "85", ""]
 ```
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/1978/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/1978/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+type GetSign<T extends string> = T extends `${infer P}${infer _Rest}`
+  ? P extends '+' | '-'
+    ? P
+    : ''
+  : ''
+
+type RemovePercent<T extends string> = T extends `${infer N}%` ? N : T
+
+type RemoveSign<T extends string> = T extends `${'+' | '-'}${infer N}` ? N : T
+
+type GetNum<T extends string> = RemovePercent<
+  RemoveSign<T>
+>
+
+type GetPercent<T extends string> = T extends `${infer _Rest}%` ? '%' : ''
+
+type PercentageParser<T extends string> = [
+  GetSign<T>,
+  GetNum<T>,
+  GetPercent<T>,
+]
+```

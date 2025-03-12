@@ -9,3 +9,19 @@ type Res2 = Without<[2, 3, 2, 3, 2, 3, 2, 3], [2, 3]>; // expected to be []
 ```
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/5117/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/5117/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+// We could add a never check if necessary....
+type EnsureArray<T> = T extends unknown[] ? T : [T]
+
+type Without<T extends unknown[], ToRemove>
+  = T extends [infer R, ...infer Rest]
+    ? R extends EnsureArray<ToRemove>[number]
+      ? Without<Rest, ToRemove>
+      : [R, ...Without<Rest, ToRemove>]
+    : T
+```

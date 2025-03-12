@@ -13,3 +13,25 @@ If the depth is provided, it's guaranteed to be positive integer.
 
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/3243/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/3243/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <hr><h3>Related Challenges</h3><a href="https://github.com/type-challenges/type-challenges/blob/main/questions/00459-medium-flatten/README.md" target="_blank"><img src="https://img.shields.io/badge/-459%E3%83%BBFlatten-d9901a" alt="459・Flatten"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+type FlattRef<T extends any[]> =
+  T extends [infer First, ...infer Rest]
+    ? First extends any[]
+      ? Flatt<[...First, ...Rest]>
+      : [First, ...Flatt<Rest>]
+    : T
+
+type FlattenDepth<T extends any[], Depth extends number = 1, Count extends readonly any[] = []> =
+  Count['length'] extends Depth
+    ? T
+    : T extends [infer First, ...infer Rest]
+      ? First extends any[]
+        ? FlattenDepth<[...First, ...FlattenDepth<Rest>], Depth, [...Count, 1]>
+        : [First, ...FlattenDepth<Rest, Depth, Count>]
+      : T
+```

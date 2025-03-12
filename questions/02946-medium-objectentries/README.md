@@ -14,4 +14,25 @@ type modelEntries = ObjectEntries<Model> // ['name', string] | ['age', number] |
 ```
 
 
-<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/2946/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/2946/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/2946/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/2946/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end--> 
+ 
+### Solution
+ 
+ 
+```ts
+/**
+ * Because Required<{ key?: undefined }> = { key: never } instead of { key: undefined }
+ *
+ * We need the special case. Optional keys are already handled by the -?
+ *
+ * Also important to note undefined extends X != X extends undefined
+ */
+type ObjectEntries<T> = {
+  [K in keyof T]-?: [
+    K,
+    undefined extends Required<T>[K]
+      ? T[K]
+      : [Exclude<T[K], undefined>] extends [never] ? undefined : Exclude<T[K], undefined>,
+  ]
+}[keyof T]
+```

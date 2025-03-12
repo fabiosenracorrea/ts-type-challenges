@@ -16,7 +16,11 @@ process_template() {
 
     # Append formatted content to README.md
     {
-      echo -e "\n### Template.ts\n"
+      echo -e " "
+      echo -e " "
+      echo -e "### Solution"
+      echo -e " "
+      echo -e " "
       echo '```ts'
       cat "$TEMPLATE_FILE"
       echo '```'

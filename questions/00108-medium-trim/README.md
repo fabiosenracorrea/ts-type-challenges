@@ -10,3 +10,19 @@ type trimmed = Trim<'  Hello World  '> // expected to be 'Hello World'
 
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/108/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/108/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <hr><h3>Related Challenges</h3><a href="https://github.com/type-challenges/type-challenges/blob/main/questions/00106-medium-trimleft/README.md" target="_blank"><img src="https://img.shields.io/badge/-106%E3%83%BBTrim%20Left-d9901a" alt="106・Trim Left"/></a>  <a href="https://github.com/type-challenges/type-challenges/blob/main/questions/04803-medium-trim-right/README.md" target="_blank"><img src="https://img.shields.io/badge/-4803%E3%83%BBTrim%20Right-d9901a" alt="4803・Trim Right"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+type WhiteSpace_ = ' ' | '\n' | '\t'
+
+// Recursive remove 1 bad char at a time, each side
+type Trim<Text extends string> =
+  Text extends `${WhiteSpace_}${infer P}`
+    ? Trim<P>
+    : Text extends `${infer P}${WhiteSpace_}`
+      ? Trim<P>
+      : Text
+```

@@ -10,4 +10,35 @@ type Res2 = LastIndexOf<[0, 0, 0], 2> // -1
 ```
 
 
-<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/5317/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/5317/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/5317/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/5317/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end--> 
+ 
+### Solution
+ 
+ 
+```ts
+import type { Equal } from '@type-challenges/utils'
+
+type LastIndexOf<
+  List extends unknown[],
+  Target,
+
+  Acc extends readonly 1[] = [],
+  LastIndex = -1,
+> = List extends [infer P, ...infer Rest]
+  ? Equal<Target, P> extends true
+    ? LastIndexOf<Rest, Target, [...Acc, 1], Acc['length']>
+    : LastIndexOf<Rest, Target, [...Acc, 1], LastIndex>
+  : LastIndex
+
+/**
+ * Solution 2 - No extra variables
+ */
+type LastIndexOf2<
+  List extends unknown[],
+  Target,
+> = List extends [...infer Rest, infer Last]
+  ? Equal<Target, Last> extends true
+    ? Rest['length']
+    : LastIndexOf2<Rest, Target>
+  : -1
+```

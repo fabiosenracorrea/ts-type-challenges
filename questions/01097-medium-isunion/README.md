@@ -11,3 +11,33 @@ type case3 = IsUnion<[string | number]> // false
 ```
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/1097/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/1097/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <hr><h3>Related Challenges</h3><a href="https://github.com/type-challenges/type-challenges/blob/main/questions/01042-medium-isnever/README.md" target="_blank"><img src="https://img.shields.io/badge/-1042%E3%83%BBIsNever-d9901a" alt="1042・IsNever"/></a>  <a href="https://github.com/type-challenges/type-challenges/blob/main/questions/00223-hard-isany/README.md" target="_blank"><img src="https://img.shields.io/badge/-223%E3%83%BBIsAny-de3d37" alt="223・IsAny"/></a>  <a href="https://github.com/type-challenges/type-challenges/blob/main/questions/04484-medium-istuple/README.md" target="_blank"><img src="https://img.shields.io/badge/-4484%E3%83%BBIsTuple-d9901a" alt="4484・IsTuple"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+// Similar approach to the Permutation exercise
+type IsUnion<T, Acc = T> =
+  [T] extends [never]
+    ? false
+    : Acc extends Acc
+      ? [Exclude<T, Acc>] extends [never]
+          ? false
+          : true
+      : false
+
+/**
+ * Solution 2
+ *
+ * from youtube.com/watch?v=n8YBd3gWBuc
+ */
+type UnionToTuple_<T, Copy = T> =
+  [T] extends [never]
+    ? []
+    : T extends Copy
+      ? [T, ...UnionToTuple<Exclude<Copy, T>>]
+      : []
+
+type IsUnion2<T> = UnionToTuple_<T>['length'] extends 1 ? false : true
+```

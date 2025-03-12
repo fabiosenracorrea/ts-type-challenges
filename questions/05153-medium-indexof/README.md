@@ -9,4 +9,20 @@ type Res2 = IndexOf<[0, 0, 0], 2>; // expected to be -1
 ```
 
 
-<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/5153/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/5153/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/5153/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/5153/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end--> 
+ 
+### Solution
+ 
+ 
+```ts
+import type { Equal } from '@type-challenges/utils'
+
+// ------------------- IMPLEMENTATION --------------------------- //
+
+type IndexOf<List extends unknown[], Target, Acc extends readonly unknown[] = []>
+  = List extends [infer First, ...infer Rest]
+    ? Equal<First, Target> extends true
+      ? Acc['length']
+      : IndexOf<Rest, Target, [...Acc, 1]>
+    : -1
+```

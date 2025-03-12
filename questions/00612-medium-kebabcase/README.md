@@ -15,3 +15,24 @@ const doNothing: DoNothing = "do-nothing"
 ```
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/612/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/612/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <hr><h3>Related Challenges</h3><a href="https://github.com/type-challenges/type-challenges/blob/main/questions/00114-hard-camelcase/README.md" target="_blank"><img src="https://img.shields.io/badge/-114%E3%83%BBCamelCase-de3d37" alt="114・CamelCase"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+// Holding a value...
+type KebabCase1<T extends string, Result extends string = ''> =
+  T extends `${infer P}${infer Rest}`
+    ? P extends Exclude<Uppercase<P>, '-' | '_'>
+      ? KebabCase1<Rest, Result extends '' ? `${Lowercase<P>}` : `${Result}-${Lowercase<P>}`>
+      : KebabCase1<Rest, `${Result}${P}`>
+    : Result
+
+type KebabCase<T extends string> =
+  T extends `${infer P}${infer R}`
+    ? R extends Uncapitalize<R>
+      ? `${Lowercase<P>}${KebabCase<R>}`
+      : `${Lowercase<P>}-${KebabCase<R>}`
+    : T
+```

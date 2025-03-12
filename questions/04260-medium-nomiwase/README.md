@@ -11,3 +11,25 @@ type AllCombinations_ABC = AllCombinations<'ABC'>;
 
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/4260/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/4260/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+ 
+ 
+### Solution
+ 
+ 
+```ts
+/**
+ * youtube.com/watch?v=nBS5-bgq6p0
+ */
+
+type StringToUnion_<T> =
+  T extends `${infer P}${infer Rest}`
+    ? P | StringToUnion<Rest>
+    : never
+
+type AllCombinations<T extends string, Acc extends string = StringToUnion_<T>> =
+  [Acc] extends [never]
+    ? ''
+    : '' | {
+      [Key in Acc]: `${Key}${AllCombinations<never, Exclude<Acc, Key>>}`
+    }[Acc]
+```

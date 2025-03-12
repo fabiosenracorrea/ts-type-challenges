@@ -28,4 +28,35 @@ type Todo = ToPrimitive<X> // should be same as `Expected`
 ```
 
 
-<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/16259/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/16259/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
+<!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/16259/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/16259/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end--> 
+ 
+### Solution
+ 
+ 
+```ts
+/* eslint-disable ts/no-unsafe-function-type */
+
+type ToPrimitive<T> = {
+  [K in keyof T]:
+  T[K] extends string
+    ? string
+    : T[K] extends number
+      ? number
+      : T[K] extends (...p: any[]) => any
+        ? Function
+        : T[K] extends boolean
+          ? boolean
+          : ToPrimitive<T[K]>
+}
+
+// Using valueOf and account for T = number | string etc!
+// youtube.com/watch?v=oh4KYm5-3KA
+type ToPrimitive2<T> =
+  T extends (...p: any[]) => any
+    ? Function
+    : T extends object
+      ? { [K in keyof T]: ToPrimitive2<T[K]> }
+      : T extends { valueOf: () => infer P }
+        ? P
+        : T
+```
