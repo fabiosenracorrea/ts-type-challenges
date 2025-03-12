@@ -32,12 +32,9 @@ type LastInUnion<T> =
     ? P
     : never
 
-type UnionToTuple<
+export type UnionToTuple<
   T,
   Last = LastInUnion<T>,
 > = [Last] extends [never]
   ? []
   : [...UnionToTuple<Exclude<T, Last>>, Last]
-
-type xxx = UnionToTuple<'a' | 'b'>
-type yyy = UnionToTuple<'a' | 'b' | 'c' | 1 | 2 | 'd' | 'e' | 'f' | 'g'>

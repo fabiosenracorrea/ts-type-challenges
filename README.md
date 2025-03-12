@@ -148,6 +148,7 @@ Last synced: 2025-02-28
 - [00697 - Tag](./questions/00697-extreme-tag)
 - [00734 - Inclusive Range](./questions/00734-extreme-inclusive-range)
 - [00741 - Sort](./questions/00741-extreme-sort)
+- [00869 - Distribute Unions](./questions/00869-extreme-distributeunions)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
