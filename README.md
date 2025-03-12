@@ -150,6 +150,7 @@ Last synced: 2025-02-28
 - [00741 - Sort](./questions/00741-extreme-sort)
 - [00869 - Distribute Unions](./questions/00869-extreme-distributeunions)
 - [06228 - JSON Parser](./questions/06228-extreme-json-parser)
+- [07561 - Subtract](./questions/07561-extreme-subtract)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
