@@ -10,7 +10,7 @@ Last synced: 2025-02-28
 
 ## Completed Challenges
 
-Currently I've completed 139 challenges. You can check them out, in order, below:
+Currently I've completed 137 challenges. You can check them out, in order, below:
 
 ### **Sorted Challenge List (by Completion Order)**
 
