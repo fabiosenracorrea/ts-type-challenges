@@ -149,6 +149,7 @@ Last synced: 2025-02-28
 - [00734 - Inclusive Range](./questions/00734-extreme-inclusive-range)
 - [00741 - Sort](./questions/00741-extreme-sort)
 - [00869 - Distribute Unions](./questions/00869-extreme-distributeunions)
+- [06228 - JSON Parser](./questions/06228-extreme-json-parser)
 - [xxxx - Next](./questions/xxxxxxx)
 
 ### How to validate
