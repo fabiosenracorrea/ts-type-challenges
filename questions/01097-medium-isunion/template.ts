@@ -13,11 +13,11 @@ type IsUnion<T, Acc = T> =
  *
  * from youtube.com/watch?v=n8YBd3gWBuc
  */
-type UnionToTuple_<T, Copy = T> =
+type UnionToTuple<T, Copy = T> =
   [T] extends [never]
     ? []
     : T extends Copy
       ? [T, ...UnionToTuple<Exclude<Copy, T>>]
       : []
 
-type IsUnion2<T> = UnionToTuple_<T>['length'] extends 1 ? false : true
+type IsUnion2<T> = UnionToTuple<T>['length'] extends 1 ? false : true
