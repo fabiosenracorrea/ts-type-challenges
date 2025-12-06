@@ -1,5 +1,7 @@
 <!--info-header-start--><h1>Chainable Picker <img src="https://img.shields.io/badge/-medium-d9901a" alt="medium"/> <img src="https://img.shields.io/badge/-%23chainable-999" alt="#chainable"/> <img src="https://img.shields.io/badge/-%23mapped--types-999" alt="#mapped-types"/> <img src="https://img.shields.io/badge/-%23conditional--types-999" alt="#conditional-types"/></h1><!--info-header-end-->
 
+Officially submitted! [Check out the suggestion progress in the official repository](https://github.com/type-challenges/type-challenges/issues/37790)
+
 Implement a `pick` function that returns a chainable object allowing you to select properties from an object by chaining property access. When you call the chain with `()`, it returns an object containing only the picked properties.
 
 The chainable picker should:
@@ -59,3 +61,4 @@ type Picker<
 
 declare function pick<T extends AnyObject>(obj: T): Picker<T>
 ```
+
