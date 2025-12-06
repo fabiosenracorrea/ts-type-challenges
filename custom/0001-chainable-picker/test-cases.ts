@@ -40,6 +40,18 @@ const invalidDouble = pick(person).name.name()
 // @ts-expect-error - Cannot pick non-existent property
 const invalidProp = pick(person).nonexistent()
 
+// @ts-expect-error do not accept other types
+pick([])
+
+// @ts-expect-error do not accept other types
+pick(1)
+
+// @ts-expect-error do not accept other types
+pick('1')
+
+// @ts-expect-error do not accept other types
+pick(() => {})
+
 // Valid usage examples
 const result1 = pick(person).name.age()
 const result2 = pick(person).email.id.name()

@@ -39,7 +39,7 @@ const invalid2 = pick(obj).invalid() // Type error!
 
 
 ```ts
-type AnyObject = Record<string, any>
+type AnyObject = Record<string, unknown>
 
 type Caller<
   T extends AnyObject,

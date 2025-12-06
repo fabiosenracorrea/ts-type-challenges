@@ -1,4 +1,4 @@
-type AnyObject = Record<string, any>
+type AnyObject = Record<string, unknown>
 
 type Caller<
   T extends AnyObject,
